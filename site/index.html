@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Zamilur Rashid, game producer in Rochester, Upstate New York. 12 years of building mobile games, co-founder of four studios, with a deep interest in cognition in game design.">
+<!-- Base styles the site was built on (added by its original host), kept so it looks the same anywhere -->
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Zamilur Rashid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+  body { background: #F1F5EC; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { background: #0B1D16; } }
+  :root[data-theme="dark"] body { background: #0B1D16; }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="arrow" viewBox="0 0 16 16">
+    <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="sun-ico" viewBox="0 0 16 16">
+    <path d="M8 1.2v2.1M8 12.7v2.1M1.2 8h2.1M12.7 8h2.1M3.2 3.2l1.5 1.5M11.3 11.3l1.5 1.5M3.2 12.8l1.5-1.5M11.3 4.7l1.5-1.5" fill="none" stroke="#E0A200" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="3.3" fill="#FFCF33" stroke="#B88400" stroke-width="1"/>
+  </symbol>
+  <symbol id="moon-ico" viewBox="0 0 16 16">
+    <path d="M10.6 1.6A6.6 6.6 0 1 0 14.4 12 5.4 5.4 0 0 1 10.6 1.6Z" fill="#B7C9EC" stroke="#5F77AD" stroke-width="1" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="sun-cloud-ico" viewBox="0 0 16 16">
+    <path d="M10.6 1.1v1.1M15 5.5h-1.1M13.7 2.4l-.8.8M7.5 2.4l.8.8" fill="none" stroke="#E0A200" stroke-width="1.3" stroke-linecap="round"/>
+    <circle cx="10.6" cy="5.5" r="2.6" fill="#FFCF33" stroke="#B88400" stroke-width=".9"/>
+    <path d="M3.8 13.6h6.6a2.6 2.6 0 0 0 .25-5.19 3.6 3.6 0 0 0-6.86-.8A3 3 0 0 0 3.8 13.6Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="moon-cloud-ico" viewBox="0 0 16 16">
+    <path d="M11.3 1.5a3.9 3.9 0 1 0 3.3 6.1 3.2 3.2 0 0 1-3.3-6.1Z" fill="#B7C9EC" stroke="#5F77AD" stroke-width=".9" stroke-linejoin="round"/>
+    <path d="M3.8 13.6h6.6a2.6 2.6 0 0 0 .25-5.19 3.6 3.6 0 0 0-6.86-.8A3 3 0 0 0 3.8 13.6Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="cloud-ico" viewBox="0 0 16 16">
+    <path d="M4.6 12.8h7.1a2.9 2.9 0 0 0 .3-5.78 4 4 0 0 0-7.63-.9A3.35 3.35 0 0 0 4.6 12.8Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="fog-ico" viewBox="0 0 16 16">
+    <path d="M4.4 9.4h7.3a2.6 2.6 0 0 0 .26-5.19 3.7 3.7 0 0 0-7.05-.83A3.02 3.02 0 0 0 4.4 9.4Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+    <path d="M2.4 11.9h11.2M4.2 14.4h8.6" fill="none" stroke="#8C9AA6" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="rain-ico" viewBox="0 0 16 16">
+    <path d="M4.4 10.2h7.3a2.6 2.6 0 0 0 .26-5.19 3.7 3.7 0 0 0-7.05-.83A3.02 3.02 0 0 0 4.4 10.2Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+    <path d="M5.6 12.1 4.8 14.3M8.6 12.1l-.8 2.2M11.6 12.1l-.8 2.2" fill="none" stroke="#3F86D6" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="snow-ico" viewBox="0 0 16 16">
+    <path d="M4.4 10.2h7.3a2.6 2.6 0 0 0 .26-5.19 3.7 3.7 0 0 0-7.05-.83A3.02 3.02 0 0 0 4.4 10.2Z" fill="#DCE4EA" stroke="#6F7F8E" stroke-width="1" stroke-linejoin="round"/>
+    <g fill="#7FA8DA"><circle cx="5.3" cy="12.9" r="1.1"/><circle cx="8.3" cy="14.3" r="1.1"/><circle cx="11.3" cy="12.9" r="1.1"/></g>
+  </symbol>
+  <symbol id="storm-ico" viewBox="0 0 16 16">
+    <path d="M4.4 10.2h7.3a2.6 2.6 0 0 0 .26-5.19 3.7 3.7 0 0 0-7.05-.83A3.02 3.02 0 0 0 4.4 10.2Z" fill="#C9D3DC" stroke="#5F6F7E" stroke-width="1" stroke-linejoin="round"/>
+    <path d="M8.9 9.6 6.7 12.8h2.1l-1.2 2.6 3.2-3.8H8.6l1.4-2Z" fill="#FFCF33" stroke="#B88400" stroke-width=".7" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="clock-ico" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M8 4.6V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="audiobook-ico" viewBox="0 0 16 16">
+    <path d="M2.8 10.4V8.4a5.2 5.2 0 0 1 10.4 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="1.6" y="9.4" width="3.4" height="4.8" rx="1.3" fill="currentColor"/>
+    <rect x="11" y="9.4" width="3.4" height="4.8" rx="1.3" fill="currentColor"/>
+  </symbol>
+  <symbol id="drive-ico" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="8" cy="8" r="1.8" fill="currentColor"/>
+    <path d="M1.9 8h4.3M9.8 8h4.3M8 9.8v4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="cook-ico" viewBox="0 0 16 16">
+    <circle cx="6.4" cy="9.6" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M9.8 6.2 14.6 1.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M4.3 9.4a2.1 2.1 0 0 1 2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="cricket-ico" viewBox="0 0 16 16">
+    <path d="M10.4 2.6l3 3-7.2 7.2a1.3 1.3 0 0 1-1.8 0l-1.2-1.2a1.3 1.3 0 0 1 0-1.8Z" fill="currentColor"/>
+    <path d="M12.9 3.1l1.9-1.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="4" cy="4" r="2.1" fill="#D6263B"/>
+  </symbol>
+  <symbol id="family-ico" viewBox="0 0 16 16">
+    <g fill="currentColor">
+      <circle cx="3.6" cy="3.4" r="2"/>
+      <circle cx="12.4" cy="3.4" r="2"/>
+      <circle cx="8" cy="8.2" r="1.6"/>
+      <path d="M.8 14.6V9.2a2.8 2.8 0 0 1 5.3-1.3A3.6 3.6 0 0 0 5 10.9v3.7Z"/>
+      <path d="M15.2 14.6V9.2a2.8 2.8 0 0 0-5.3-1.3A3.6 3.6 0 0 1 11 10.9v3.7Z"/>
+      <path d="M5.9 14.6v-2.3a2.1 2.1 0 0 1 4.2 0v2.3Z"/>
+    </g>
+  </symbol>
+  <symbol id="article-ico" viewBox="0 0 16 16">
+    <path d="M4 1.6h5.2l3.6 3.6v8.2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2.6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M9 1.8v3.6h3.6M5.6 8.4h4.8M5.6 11h3.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="podcast-ico" viewBox="0 0 16 16">
+    <rect x="5.6" y="1.3" width="4.8" height="8.6" rx="2.4" fill="currentColor"/>
+    <path d="M3.3 7.6a4.7 4.7 0 0 0 9.4 0M8 12.3v2.3M5.7 14.6h4.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="act-work" viewBox="0 0 16 16">
+    <rect x="3" y="3.5" width="10" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M1.5 12.6h13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="act-morning" viewBox="0 0 16 16">
+    <path d="M2.8 6.6h8v3.4a3.4 3.4 0 0 1-3.4 3.4H6.2A3.4 3.4 0 0 1 2.8 10Z" fill="currentColor"/>
+    <path d="M10.8 7.6h1.1a1.6 1.6 0 0 1 0 3.2h-1.1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M5.4 4.6c0-1 1-1 1-2.1M8.4 4.6c0-1 1-1 1-2.1" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="act-evening" viewBox="0 0 16 16">
+    <path d="M8 2.2 1.9 7.3a.7.7 0 0 0 .9 1.07l.5-.42v5.05c0 .46.37.83.83.83h2.37v-3.3h3v3.3h2.37c.46 0 .83-.37.83-.83V7.95l.5.42a.7.7 0 0 0 .9-1.07Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="act-sleep" viewBox="0 0 16 16">
+    <path d="M8.6 3.2A5.4 5.4 0 1 0 13 11.6 4.4 4.4 0 0 1 8.6 3.2Z" fill="currentColor"/>
+    <path d="M10.6 1.8h3l-3 3.2h3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="act-dayoff" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="3" fill="currentColor"/>
+    <path d="M8 1.6v2M8 12.4v2M1.6 8h2M12.4 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="profile-card-ico" viewBox="0 0 16 16">
+    <rect x="1.4" y="3" width="13.2" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="5.4" cy="6.9" r="1.55" fill="currentColor"/>
+    <path d="M3.3 11.1c.4-1.25 1.15-1.85 2.1-1.85s1.7.6 2.1 1.85" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M9.4 6.6h3.3M9.4 9.3h2.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="home-ico" viewBox="0 0 16 16">
+    <path d="M8 1.9 1.4 7.4a.75.75 0 0 0 .96 1.15L3 8.02v5.18c0 .5.4.9.9.9h2.6v-3.6h3v3.6h2.6c.5 0 .9-.4.9-.9V8.02l.64.53a.75.75 0 0 0 .96-1.15Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="topbar">
+      <a class="badge" href="#top" aria-label="Zamilur Rashid, back to top">ZR</a>
+      <p class="home-note"><span class="home-badge" aria-hidden="true"><svg class="home-ico" focusable="false"><use href="#home-ico"/></svg></span><span>I live in <strong>Rochester, Upstate NY</strong></span></p>
+    </div>
+    <ol class="tz-line" aria-label="Local times, in order from Rochester eastward">
+      <li class="tz-stop is-home" data-tz="America/New_York" data-city="Rochester" style="--gap-h:6">
+        <span class="tz-city" aria-hidden="true"><svg class="sky-ico is-sun" data-sky="sun" focusable="false"><use href="#sun-ico"/></svg>Rochester</span>
+        <span class="tz-offset is-home" aria-hidden="true">Home<span class="tz-abbr-wrap"> · <span class="tz-abbr">ET</span></span></span>
+        <span class="tz-rail" aria-hidden="true"><span class="tz-dot is-home"><svg class="home-ico" focusable="false"><use href="#home-ico"/></svg></span></span>
+        <span class="clock-time" aria-hidden="true"></span>
+        <span class="clock-date tz-date-long" aria-hidden="true"></span>
+        <span class="clock-date tz-date-short" aria-hidden="true"></span>
+        <span class="tz-wx" aria-hidden="true" hidden><b class="tz-temp"></b><span class="tz-cond"></span></span>
+        <span class="sr-only clock-sr"></span>
+      </li>
+      <li class="tz-stop" data-tz="Europe/Paris" data-city="Paris" style="--gap-h:4">
+        <span class="tz-city" aria-hidden="true"><svg class="sky-ico is-sun" data-sky="sun" focusable="false"><use href="#sun-ico"/></svg>Paris</span>
+        <span class="tz-offset" aria-hidden="true"><span class="tz-plus">+</span><span class="tz-n">6h</span><span class="tz-word"> ahead</span></span>
+        <span class="tz-rail" aria-hidden="true"><span class="tz-dot"></span></span>
+        <span class="clock-time" aria-hidden="true"></span>
+        <span class="clock-date tz-date-long" aria-hidden="true"></span>
+        <span class="clock-date tz-date-short" aria-hidden="true"></span>
+        <span class="tz-wx" aria-hidden="true" hidden><b class="tz-temp"></b><span class="tz-cond"></span></span>
+        <span class="sr-only clock-sr"></span>
+      </li>
+      <li class="tz-stop" data-tz="Asia/Dhaka" data-city="Dhaka" style="--gap-h:3">
+        <span class="tz-city" aria-hidden="true"><svg class="sky-ico is-sun" data-sky="sun" focusable="false"><use href="#sun-ico"/></svg>Dhaka</span>
+        <span class="tz-offset" aria-hidden="true"><span class="tz-plus">+</span><span class="tz-n">10h</span><span class="tz-word"> ahead</span></span>
+        <span class="tz-rail" aria-hidden="true"><span class="tz-dot"></span></span>
+        <span class="clock-time" aria-hidden="true"></span>
+        <span class="clock-date tz-date-long" aria-hidden="true"></span>
+        <span class="clock-date tz-date-short" aria-hidden="true"></span>
+        <span class="tz-wx" aria-hidden="true" hidden><b class="tz-temp"></b><span class="tz-cond"></span></span>
+        <span class="sr-only clock-sr"></span>
+      </li>
+      <li class="tz-stop" data-tz="Asia/Seoul" data-city="Seoul">
+        <span class="tz-city" aria-hidden="true"><svg class="sky-ico is-sun" data-sky="sun" focusable="false"><use href="#sun-ico"/></svg>Seoul</span>
+        <span class="tz-offset" aria-hidden="true"><span class="tz-plus">+</span><span class="tz-n">13h</span><span class="tz-word"> ahead</span></span>
+        <span class="tz-rail" aria-hidden="true"><span class="tz-dot"></span></span>
+        <span class="clock-time" aria-hidden="true"></span>
+        <span class="clock-date tz-date-long" aria-hidden="true"></span>
+        <span class="clock-date tz-date-short" aria-hidden="true"></span>
+        <span class="tz-wx" aria-hidden="true" hidden><b class="tz-temp"></b><span class="tz-cond"></span></span>
+        <span class="sr-only clock-sr"></span>
+      </li>
+    </ol>
+    <p class="tz-note" hidden>Weather from <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>, updated <span class="tz-note-age"></span></p>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" aria-labelledby="name">
+      <div class="hero-cover">
+        <div class="cover-frame" id="cover-frame" data-phase="day">
+          <noscript><img class="cover-img is-on" src="img/cover-day-1200.webp" alt="The Genesee River leading to the downtown Rochester skyline under a blue sky with clouds, seen from the Ford Street Bridge" width="2000" height="1000"></noscript>
+        </div>
+        <p class="cover-credit"><span class="cover-place">The Genesee from the Ford Street Bridge</span><span class="cover-by">Photo: <a class="cover-author" href="https://commons.wikimedia.org/wiki/File:Genesee_River_and_downtown_skyline_from_Ford_Street_bridge,_Rochester,_New_York_-_20190914.jpg" target="_blank" rel="noopener noreferrer">Andre Carrotflower</a>, <a class="cover-license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>, cropped</span></p>
+        <!-- Where Rochester is: New York State (US Census outline) with Lake Ontario, and New York City for scale -->
+        <div class="cover-map" role="img" aria-label="Map of New York State: Rochester is in the west, on the shore of Lake Ontario; New York City is in the far southeast">
+          <svg viewBox="0 0 200 150" aria-hidden="true" focusable="false">
+            <text class="map-lake" x="10" y="30">Lake Ontario</text>
+            <path class="map-state" d="M139.6,139.1L140,140.8L139.3,141.9L136.2,144L135.3,144L135.5,142.7L136.2,142.3L136.5,140ZM10.1,88.3L12.9,87L17.3,84.3L19.7,82L22.2,80.8L24.3,80.3L25.3,78.5L26.4,77.6L26.7,76.2L29.7,74.8L31.3,73.5L31,71.4L30,70.3L30.2,69.2L29.7,68.2L27.9,67.2L28.1,64.8L26.6,64.3L27.4,62.4L27.2,59.1L26.9,58.7L29.2,58.2L32.3,57.2L36.8,56.2L40,55.7L42.6,55.8L45.6,56.1L48.5,56L55.3,57.2L57.1,57.8L58.3,59L60.1,60.3L61,60.6L64.2,59.4L67,59.4L70.5,59.1L72.1,59.6L74,59.7L75.1,59.1L77.5,58.6L78.9,57.5L79.6,57.5L81.2,55.4L83.6,53.8L84.4,53.6L85.9,52.2L87,52L88.6,52.4L89.9,52L90.7,50.6L90.8,48.3L90.1,43.6L88.6,42.5L89.4,41.2L90.5,40.9L90.7,41.8L92.4,40.7L92.1,39.6L90.6,38.4L88.9,38.7L89.3,38L88.1,36.6L86.9,36.6L87,34.5L88.3,31.5L89.8,31.4L91.6,30.3L91.6,29L93,28.5L95.2,27L95.9,27.2L97.1,26.4L99.1,24.4L99.4,23.2L100.3,21.9L103.5,18.7L105.9,16.1L110.3,12.4L110.2,12.1L115.4,9.2L117.4,7.5L118.8,7.5L120.5,6.5L122.6,7.3L124.1,7L131.1,7.1L135.3,7L143.5,6.5L145.4,6.5L152.6,6L152.7,8.9L152.2,9.7L152,11.3L153,12.8L152.3,14.2L152.2,16.7L151.9,17.5L152.3,19.3L153.8,21.6L154.2,23.4L153.3,25.5L153.9,28.5L153.7,29.4L152.2,31.1L151.9,33.4L151.3,35.5L152,36.2L152,38.9L152.9,40.7L152.5,42.3L153.5,43.8L152.3,46.4L151.9,49.4L152.7,50L153.2,48.3L154.7,48.3L154.9,49.6L155.9,50.4L156.1,59.4L155.9,70.4L156,72.4L155.7,73.3L156.4,75L153.9,84.9L151.4,95.3L152,96.4L151.5,107.5L151.3,115.2L151.1,119.4L152.7,121.9L147.2,125.5L149,128.1L148.9,129L148.3,130.1L146.6,131.2L146.5,133.3L145.4,133.3L146.2,134.8L147.7,132.5L148.6,132.9L149.4,131.8L151.1,131L152.6,130.9L152.9,130L154.7,130.8L154.9,129.7L155.6,130.4L157.3,130.6L158.8,131.1L160.7,130.3L160.8,129.2L162.2,129L163,129.2L169.2,128.9L172.4,128.3L173.6,127.8L176,126L176.7,125L177.7,124.6L178.7,123.2L180.4,122.6L181.4,122.6L180,124L179.2,124.2L180.5,125L181,126.1L182.4,126.4L183.3,125.7L184.7,127.5L185.9,127L187.7,125.7L187.8,124.9L189.2,124.6L190.2,124.9L189.9,125.4L184.4,128.1L178.1,131.6L174,133.4L167.4,136.1L163.1,138.3L159.6,139.5L157.3,139.9L156.8,139.5L151.5,141.2L146.5,141.1L142.7,142.6L142.9,141.6L141,141.7L141.2,141L140.3,140L140.8,139.1L140.2,138.2L140.6,137.6L140.9,135.9L141.9,134.1L143.4,129.2L143.2,128.7L132.2,122.5L124.9,118.1L123.8,116.6L123.8,115.8L122.5,116.1L122.3,115.5L120.2,115.6L120.4,115.1L119.1,114.3L118.2,114.4L118.2,113.5L116.1,110.6L116.7,110.3L116.5,106.1L115.4,105.5L116,104.7L115.2,103.4L113,102.6L111.8,102.7L111.1,100.1L110.7,100.2L109.5,98.6L100.8,98.7L87.1,98.6L78.1,98.4L69.5,98.4L49.8,98L36.2,97.6L29.9,97.4L9.8,96.6L9.8,96.5Z"/>
+            <path class="map-route" d="M141.1 137.5Q124 68 59.3 62.9"/>
+            <circle class="map-city" cx="141.1" cy="137.5" r="2.8"/>
+            <text class="map-label" x="134" y="140" text-anchor="end">NYC</text>
+            <circle class="map-pulse" cx="59.3" cy="62.9" r="5.5"/>
+            <circle class="map-home" cx="59.3" cy="62.9" r="5.5"/>
+            <text class="map-label map-label-home" x="54" y="82" text-anchor="middle">Rochester</text>
+          </svg>
+        </div>
+        <div class="hero-photo">
+          <img src="img/photo.webp" alt="Zamilur Rashid" width="160" height="160">
+          <span class="photo-badge" data-activity="work"><svg class="ico" aria-hidden="true" focusable="false"><use href="#act-work"/></svg><span class="sr-only photo-badge-label">At work</span></span>
+        </div>
+      </div>
+
+      <script>
+        // Cover photo: one of four Monroe County photos, picked by Rochester's sunrise and sunset.
+        // Photos from Wikimedia Commons, cropped to 2:1 and saved as img/cover-<phase>-1200.webp and -2000.webp.
+        (function () {
+          var rad = Math.PI / 180;
+
+          // Approximate sunrise and sunset, in UTC hours, for a latitude and longitude (also used by site.js)
+          function sunTimesUTC(now, lat, lon) {
+            var n = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 0)) / 86400000);
+            var lngHour = lon / 15;
+            function calc(rise) {
+              var t = n + ((rise ? 6 : 18) - lngHour) / 24;
+              var M = 0.9856 * t - 3.289;
+              var L = M + 1.916 * Math.sin(M * rad) + 0.020 * Math.sin(2 * M * rad) + 282.634;
+              L = ((L % 360) + 360) % 360;
+              var RA = Math.atan(0.91764 * Math.tan(L * rad)) / rad;
+              RA = ((RA % 360) + 360) % 360;
+              RA = (RA + (Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90)) / 15;
+              var sinDec = 0.39782 * Math.sin(L * rad);
+              var cosDec = Math.cos(Math.asin(sinDec));
+              var cosH = (Math.cos(90.833 * rad) - sinDec * Math.sin(lat * rad)) / (cosDec * Math.cos(lat * rad));
+              cosH = Math.max(-1, Math.min(1, cosH));
+              var H = (rise ? 360 - Math.acos(cosH) / rad : Math.acos(cosH) / rad) / 15;
+              var T = H + RA - 0.06571 * t - 6.622;
+              return (((T - lngHour) % 24) + 24) % 24;
+            }
+            return { rise: calc(true), set: calc(false) };
+          }
+          window.ZR_sunTimesUTC = sunTimesUTC;
+
+          var BY_SA_4 = ['CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'];
+          var BY_2 = ['CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/'];
+          var PHOTOS = {
+            morning: {
+              place: 'Crew practice on the Genesee River',
+              alt: 'Rowers practicing on the Genesee River in early morning light, by the arches of the Frederick Douglass\u2013Susan B. Anthony Memorial Bridge in downtown Rochester',
+              author: 'DanielPenfield',
+              page: 'https://commons.wikimedia.org/wiki/File:GeneseeRiverCrewPracticeDouglassAnthonyBridge.jpg',
+              license: BY_SA_4,
+              fy: '62%'
+            },
+            day: {
+              place: 'The Genesee from the Ford Street Bridge',
+              alt: 'The Genesee River leading to the downtown Rochester skyline under a blue sky with clouds, seen from the Ford Street Bridge',
+              author: 'Andre Carrotflower',
+              page: 'https://commons.wikimedia.org/wiki/File:Genesee_River_and_downtown_skyline_from_Ford_Street_bridge,_Rochester,_New_York_-_20190914.jpg',
+              license: BY_SA_4,
+              fy: '35%'
+            },
+            evening: {
+              place: 'Sunset over downtown from Cobbs Hill',
+              alt: 'The sun setting in an orange sky behind the silhouette of downtown Rochester, seen from Cobbs Hill',
+              author: 'DanielPenfield',
+              page: 'https://commons.wikimedia.org/wiki/File:SunsetOverRochesterNewYork.jpg',
+              license: BY_SA_4,
+              fy: '58%'
+            },
+            night: {
+              place: 'Downtown Rochester at night',
+              alt: 'Downtown Rochester towers lit up at night above the Genesee River, with the Frederick Douglass\u2013Susan B. Anthony Memorial Bridge and city lights reflected in the water',
+              author: 'Maximilian Kapitonoff',
+              page: 'https://commons.wikimedia.org/wiki/File:RocNight_Rochester_at_Night,_October_1st_2016_(30023509206).jpg',
+              license: BY_2,
+              fy: '20%'
+            }
+          };
+
+          var frame = document.getElementById('cover-frame');
+          var placeEl = document.querySelector('.cover-place');
+          var authorEl = document.querySelector('.cover-author');
+          var licenseEl = document.querySelector('.cover-license');
+          var current = '';
+
+          // Morning from just before sunrise, day from three hours after it,
+          // evening from 75 minutes before sunset, night from 45 minutes after it
+          function phaseAt(now) {
+            var p = {};
+            new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hourCycle: 'h23', hour: 'numeric', minute: 'numeric' })
+              .formatToParts(now)
+              .forEach(function (x) { p[x.type] = x.value; });
+            var hour = (parseInt(p.hour, 10) % 24) + parseInt(p.minute, 10) / 60;
+            var offset = hour - (now.getUTCHours() + now.getUTCMinutes() / 60);
+            if (offset > 12) offset -= 24;
+            if (offset < -12) offset += 24;
+            var sun = sunTimesUTC(now, 43.1566, -77.6088);
+            var rise = (sun.rise + offset + 24) % 24;
+            var set = (sun.set + offset + 24) % 24;
+            if (hour >= rise - 0.4 && hour < rise + 3) return 'morning';
+            if (hour >= rise + 3 && hour < set - 1.25) return 'day';
+            if (hour >= set - 1.25 && hour < set + 0.75) return 'evening';
+            return 'night';
+          }
+
+          function show(phase) {
+            if (!frame || phase === current) return;
+            var first = !current;
+            current = phase;
+            var photo = PHOTOS[phase];
+            var img = document.createElement('img');
+            img.className = 'cover-img';
+            img.alt = photo.alt;
+            img.width = 2000;
+            img.height = 1000;
+            img.decoding = 'async';
+            if (first) img.setAttribute('fetchpriority', 'high');
+            img.style.setProperty('--fy', photo.fy);
+            img.sizes = '(max-width: 1080px) calc(100vw - 32px), 1012px';
+            img.srcset = 'img/cover-' + phase + '-1200.webp 1200w, img/cover-' + phase + '-2000.webp 2000w';
+            img.src = 'img/cover-' + phase + '-1200.webp';
+            function reveal() {
+              img.classList.add('is-on');
+              Array.prototype.forEach.call(frame.querySelectorAll('.cover-img'), function (old) {
+                if (old !== img) setTimeout(function () { if (old.parentNode) old.parentNode.removeChild(old); }, 900);
+              });
+            }
+            img.addEventListener('load', reveal);
+            img.addEventListener('error', reveal);
+            frame.appendChild(img);
+            if (img.complete && img.naturalWidth) reveal();
+            frame.setAttribute('data-phase', phase);
+            placeEl.textContent = photo.place;
+            authorEl.textContent = photo.author;
+            authorEl.href = photo.page;
+            licenseEl.textContent = photo.license[0];
+            licenseEl.href = photo.license[1];
+          }
+
+          window.ZR_COVER = {
+            phaseAt: phaseAt,
+            update: function (now) { show(phaseAt(now || new Date())); }
+          };
+          window.ZR_COVER.update();
+        })();
+      </script>
+
+      <div class="hero-main">
+        <p class="eyebrow">Game producer · <span class="nowrap">Rochester, Upstate New York</span></p>
+        <h1 class="name" id="name"><span class="word">Zamilur</span> <span class="word">Rashid</span></h1>
+        <ul class="headline">
+          <li>12 years of building mobile games</li>
+          <li>Deep interest in cognition in game design</li>
+          <li>Co-founder of four studios</li>
+        </ul>
+        <!-- The four studios, each linking down to its card in Studios -->
+        <ul class="hero-studios" aria-label="The four studios">
+          <li><a class="hero-studio" href="#studio-minigamelab"><img src="img/minigamelab.webp" alt="" width="24" height="24"><span class="hero-studio-name">MiniGameLab</span></a></li>
+          <li><a class="hero-studio" href="#studio-big-bang"><img src="img/big-bang-studio.webp" alt="" width="24" height="24"><span class="hero-studio-name">Big Bang Studio</span></a></li>
+          <li><a class="hero-studio" href="#studio-wiseman"><img src="img/wiseman-games.webp" alt="" width="24" height="24"><span class="hero-studio-name">Wiseman Games</span></a></li>
+          <li><a class="hero-studio" href="#studio-hungry-monkey"><img src="img/hungry-monkey.webp" alt="" width="24" height="24"><span class="hero-studio-name">Hungry Monkey</span></a></li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/zr1/" target="_blank" rel="noopener noreferrer">Connect on <span class="nowrap">LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+          <!-- Prototypes page. The chip reads "Soon" until play/list.js lists a game, then site.js shows how many there are. -->
+          <a class="btn btn-proto" id="proto-btn" href="prototypes.html">Play my <span class="nowrap">prototypes <span class="proto-count" id="proto-count">Soon</span></span></a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="scene-wrap">
+          <!-- Status: one line from the work hours in schedule.js, in Rochester time (site.js) -->
+          <p class="shift" data-state="off"><i aria-hidden="true"></i><span class="shift-text">Off work</span></p>
+          <!-- Rochester from Open-Meteo (see site.js): now and the next three hours, then the day's high, low,
+               rain or snow, sunrise and sunset (tomorrow's after 20:00), and the next federal holiday -->
+          <div class="wx-today" id="wx-today">
+            <p class="wx-head"><span class="wx-label">Rochester</span><span class="wx-cond" hidden><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><span class="wx-cond-text"></span></span></p>
+            <ol class="wx-hours" hidden>
+              <li class="wx-hour"><span class="wx-hour-time"></span><span class="wx-hour-temp"><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><b></b></span><span class="wx-hour-rain"></span></li>
+              <li class="wx-hour"><span class="wx-hour-time"></span><span class="wx-hour-temp"><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><b></b></span><span class="wx-hour-rain"></span></li>
+              <li class="wx-hour"><span class="wx-hour-time"></span><span class="wx-hour-temp"><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><b></b></span><span class="wx-hour-rain"></span></li>
+              <li class="wx-hour"><span class="wx-hour-time"></span><span class="wx-hour-temp"><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><b></b></span><span class="wx-hour-rain"></span></li>
+            </ol>
+            <p class="wx-day">Today</p>
+            <dl class="wx-stats">
+              <div class="wx-stat wx-live" hidden><dt>High</dt><dd class="wx-high"></dd></div>
+              <div class="wx-stat wx-live" hidden><dt>Low</dt><dd class="wx-low"></dd></div>
+              <div class="wx-stat wx-live" hidden><dt class="wx-precip-kind">Rain</dt><dd class="wx-precip"></dd></div>
+              <div class="wx-stat"><dt>Sunrise</dt><dd class="wx-rise">--:--</dd></div>
+              <div class="wx-stat"><dt>Sunset</dt><dd class="wx-set">--:--</dd></div>
+            </dl>
+            <div class="next-off wx-off" hidden>
+              <p class="next-off-head"><span class="next-off-label">Next federal holiday</span><span class="next-off-count"></span></p>
+              <p class="next-off-name"><span class="next-off-title"></span><span class="next-off-date"></span></p>
+            </div>
+            <p class="wx-credit" hidden>Forecast from <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="next" aria-labelledby="next-title">
+      <div class="section-head">
+        <h2 class="h2" id="next-title">Where I'm heading next</h2>
+        <p class="section-note">Going too? <a href="https://www.linkedin.com/in/zr1/" target="_blank" rel="noopener noreferrer">Message me on LinkedIn</a> and let's meet.</p>
+      </div>
+      <ol class="trips">
+        <li class="trip trip-next" data-start="2026-10-07" data-end="2026-10-08" data-tz="Europe/Istanbul" data-city="Istanbul">
+          <div class="trip-body">
+            <div class="trip-head">
+              <img class="trip-logo" src="img/mobidictum.webp" alt="" width="44" height="44">
+              <div class="trip-event">
+                <h3 class="trip-name">Mobidictum Conference 2026</h3>
+                <div class="trip-top"><span class="trip-count"></span></div>
+              </div>
+            </div>
+            <p class="trip-place-name"><span class="trip-country">Türkiye</span><span class="trip-city">Istanbul</span></p>
+            <p class="trip-when"><span class="trip-dates">Oct 7–8, 2026</span><span class="trip-countdown" aria-hidden="true"></span></p>
+            <p class="trip-clock" aria-hidden="true"><svg class="ico" focusable="false"><use href="#clock-ico"/></svg><span><b class="trip-local">--:--</b> in Istanbul&nbsp;·</span> <span class="trip-gap"></span></p>
+            <span class="sr-only">October 7 to 8, 2026, at the Lütfi Kırdar Convention Center in Istanbul, Türkiye.</span>
+          </div>
+        <svg class="trip-skyline" viewBox="0 0 320 70" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="0" y="66" width="320" height="4"/><rect x="46" y="44" width="70" height="22"/><path d="M56 45A25 25 0 0 1 106 45Z"/><rect x="80.3" y="12" width="1.4" height="8"/><circle cx="81" cy="11.5" r="1.3"/><path d="M48 50A12 12 0 0 1 72 50Z"/><path d="M90 50A12 12 0 0 1 114 50Z"/><path d="M38 56A7 7 0 0 1 52 56Z"/><path d="M110 56A7 7 0 0 1 124 56Z"/><rect x="28.5" y="18" width="3" height="48"/><polygon points="28,18 30,8 32,18"/><rect x="27.4" y="30" width="5.2" height="1.6"/><rect x="27.4" y="42" width="5.2" height="1.6"/><rect x="38.5" y="24" width="3" height="42"/><polygon points="38,24 40,14 42,24"/><rect x="37.4" y="36" width="5.2" height="1.6"/><rect x="120.5" y="24" width="3" height="42"/><polygon points="120,24 122,14 124,24"/><rect x="119.4" y="36" width="5.2" height="1.6"/><rect x="130.5" y="18" width="3" height="48"/><polygon points="130,18 132,8 134,18"/><rect x="129.4" y="30" width="5.2" height="1.6"/><rect x="129.4" y="42" width="5.2" height="1.6"/><rect x="150" y="54" width="14" height="12"/><rect x="166" y="50" width="12" height="16"/><rect x="180" y="56" width="14" height="10"/><rect x="218" y="52" width="12" height="14"/><rect x="198" y="24" width="14" height="42"/><rect x="196" y="22" width="18" height="3"/><polygon points="196,22 205,4 214,22"/><rect x="250" y="48" width="52" height="18"/><path d="M256 49A20 20 0 0 1 296 49Z"/><rect x="275.3" y="21" width="1.4" height="8"/><path d="M246 54A9 9 0 0 1 264 54Z"/><path d="M288 54A9 9 0 0 1 306 54Z"/><rect x="238.5" y="16" width="3" height="50"/><polygon points="238,16 240,6 242,16"/><rect x="237.4" y="28" width="5.2" height="1.6"/><rect x="237.4" y="40" width="5.2" height="1.6"/><rect x="248.5" y="26" width="3" height="40"/><polygon points="248,26 250,16 252,26"/><rect x="247.4" y="38" width="5.2" height="1.6"/><rect x="300.5" y="26" width="3" height="40"/><polygon points="300,26 302,16 304,26"/><rect x="299.4" y="38" width="5.2" height="1.6"/><rect x="310.5" y="16" width="3" height="50"/><polygon points="310,16 312,6 314,16"/><rect x="309.4" y="28" width="5.2" height="1.6"/><rect x="309.4" y="40" width="5.2" height="1.6"/></g></svg>
+          <div class="trip-foot">
+            <span class="trip-venue">Lütfi Kırdar Convention Center</span>
+            <a class="text-link" href="https://mobidictum.com/events/mobidictum-conference-2026/" target="_blank" rel="noopener noreferrer">Event page <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </li>
+        <li class="trip" data-start="2027-03-01" data-end="2027-03-05" data-tz="America/Los_Angeles" data-city="San Francisco">
+          <div class="trip-body">
+            <div class="trip-head">
+              <img class="trip-logo" src="img/gdc.webp" alt="" width="44" height="44">
+              <div class="trip-event">
+                <h3 class="trip-name">GDC Festival of Gaming 2027</h3>
+                <div class="trip-top"><span class="trip-count"></span></div>
+              </div>
+            </div>
+            <p class="trip-place-name"><span class="trip-country">USA</span><span class="trip-city">San Francisco</span></p>
+            <p class="trip-when"><span class="trip-dates">Mar 1–5, 2027</span><span class="trip-countdown" aria-hidden="true"></span></p>
+            <p class="trip-clock" aria-hidden="true"><svg class="ico" focusable="false"><use href="#clock-ico"/></svg><span><b class="trip-local">--:--</b> in San Francisco&nbsp;·</span> <span class="trip-gap"></span></p>
+            <span class="sr-only">March 1 to 5, 2027, at the Moscone Center in San Francisco.</span>
+          </div>
+        <svg class="trip-skyline" viewBox="0 0 320 70" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="0" y="66" width="320" height="4"/><rect x="0" y="48" width="178" height="3"/><rect x="36" y="10" width="3.5" height="56"/><rect x="43.5" y="10" width="3.5" height="56"/><rect x="36" y="14" width="11" height="2.5"/><rect x="36" y="26" width="11" height="2"/><rect x="36" y="38" width="11" height="2"/><rect x="126" y="10" width="3.5" height="56"/><rect x="133.5" y="10" width="3.5" height="56"/><rect x="126" y="14" width="11" height="2.5"/><rect x="126" y="26" width="11" height="2"/><rect x="126" y="38" width="11" height="2"/><path d="M0 36Q24 30 41.5 10Q86.5 78 131.5 10Q156 30 178 38M51 22.8V48M60 32.2V48M69 38.9V48M78 42.8V48M87 44.0V48M96 42.5V48M105 38.3V48M114 31.3V48M123 21.6V48" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="184" y="46" width="12" height="20"/><path d="M198 66V20Q204 9 210 20V66Z"/><rect x="212" y="40" width="10" height="26"/><polygon points="224,66 235,6 246,66"/><rect x="234.4" y="0" width="1.2" height="8"/><rect x="248" y="42" width="14" height="24"/><rect x="264" y="52" width="10" height="14"/><path d="M272 66Q294 46 320 50V66Z"/><rect x="293" y="31" width="7" height="20"/><rect x="292" y="29" width="9" height="3"/></g></svg>
+          <div class="trip-foot">
+            <span class="trip-venue">Moscone Center</span>
+            <a class="text-link" href="https://gdconf.com/" target="_blank" rel="noopener noreferrer">Event page <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="studios" aria-labelledby="studios-title">
+      <div class="section-head">
+        <h2 class="h2" id="studios-title">Studios</h2>
+        <p class="section-note">We make hybrid mobile games with a focus on RPG, RTS &amp; Puzzles.</p>
+      </div>
+      <div class="studios">
+        <article class="studio" id="studio-minigamelab">
+          <div class="studio-top">
+            <img class="studio-logo" src="img/minigamelab.webp" alt="" width="56" height="56">
+            <div class="studio-id">
+              <div class="studio-name-row">
+                <h3 class="studio-name">MiniGameLab</h3>
+                <a class="tag-link" href="https://www.linkedin.com/company/mini-game-lab/" target="_blank" rel="noopener noreferrer" aria-label="MiniGameLab on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+              </div>
+              <div class="studio-tags"><span class="tag role">Co-founder</span><span class="tag">Since 2021</span></div>
+            </div>
+          </div>
+          <div class="people">
+            <h4 class="people-label">Key people</h4>
+            <ul class="people-list">
+              <li><a class="person" href="https://www.linkedin.com/in/dipayondebnathdip/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-dipayondebnathdip.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Dipayon Debnath Dip</span><span class="person-role">Co-founder &amp; managing director</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/habibkhan007/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-habibkhan007.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Habibur Rahman</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/tanvirul-haque-game-artist/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-tanvirul-haque-game-artist.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Md. Tanvirul Haque</span><span class="person-role">Game artist</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/saabbir-m/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-saabbir-m.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Mahmudul Hasan Sabbir</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/minhazul-fahim-akash-8833b8175/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-minhazul-fahim-akash-8833b8175.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Minhazul Fahim Akash</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/hridoykb/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-hridoykb.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Hridoy Krisno Bala</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/fardin-haque-game-dev/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-fardin-haque-game-dev.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Fardin Haque</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+            </ul>
+          </div>
+          <div class="studio-links">
+            <a class="store" href="https://minigamelab.com/" target="_blank" rel="noopener noreferrer">Website <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/developer?id=Mini+Game+Lab+Limited" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://apps.apple.com/us/developer/dipayon-debnath-dip/id1566993708" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="studio" id="studio-big-bang">
+          <div class="studio-top">
+            <img class="studio-logo" src="img/big-bang-studio.webp" alt="" width="56" height="56">
+            <div class="studio-id">
+              <div class="studio-name-row">
+                <h3 class="studio-name">Big Bang Studio</h3>
+                <a class="tag-link" href="https://www.linkedin.com/company/big-bang-studio-llc/" target="_blank" rel="noopener noreferrer" aria-label="Big Bang Studio on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+              </div>
+              <div class="studio-tags"><span class="tag role">Co-founder</span><span class="tag">Since 2022</span></div>
+            </div>
+          </div>
+          <div class="people">
+            <h4 class="people-label">Key people</h4>
+            <ul class="people-list">
+              <li><a class="person" href="https://www.linkedin.com/in/abdullah-all-kafi-79aab7126/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-abdullah-all-kafi-79aab7126.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Abdullah All Kafi</span><span class="person-role">Co-founder &amp; CEO</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/jobaduwul/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-jobaduwul.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Kazi Jawadul Islam Jishan</span><span class="person-role">Junior game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/muntasir-game-dev/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-muntasir-game-dev.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Muntasir Chowdhury Mridul</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/arindom-ad/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-arindom-ad.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Arindom Das</span><span class="person-role">Senior game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+            </ul>
+          </div>
+          <div class="studio-links">
+            <a class="store" href="https://bigbangstudio.gg/" target="_blank" rel="noopener noreferrer">Website <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/dev?id=8301241314683450945" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://apps.apple.com/us/app/defense-express/id6751158697" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="studio" id="studio-wiseman">
+          <div class="studio-top">
+            <img class="studio-logo" src="img/wiseman-games.webp" alt="" width="56" height="56">
+            <div class="studio-id">
+              <div class="studio-name-row">
+                <h3 class="studio-name">Wiseman Games</h3>
+                <a class="tag-link" href="https://www.linkedin.com/company/wiseman-games/" target="_blank" rel="noopener noreferrer" aria-label="Wiseman Games on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+              </div>
+              <div class="studio-tags"><span class="tag role">Co-founder</span><span class="tag">Since 2023</span></div>
+            </div>
+          </div>
+          <div class="people">
+            <h4 class="people-label">Key people</h4>
+            <ul class="people-list">
+              <li><a class="person" href="https://www.linkedin.com/in/auz18/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-auz18.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Ashraf Uz Zaman</span><span class="person-role">Co-founder &amp; CEO</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/shubha360/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-shubha360.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Raquibul Islam</span><span class="person-role">Game developer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/nishadsubha/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-nishadsubha.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Nishad Subha</span><span class="person-role">Game artist</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+            </ul>
+          </div>
+          <div class="studio-links">
+            <a class="store" href="https://wiseman.games/" target="_blank" rel="noopener noreferrer">Website <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/developer?id=Wiseman+Studio+Limited" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://apps.apple.com/us/app/ropocop/id6754887304" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="studio" id="studio-hungry-monkey">
+          <div class="studio-top">
+            <img class="studio-logo" src="img/hungry-monkey.webp" alt="" width="56" height="56">
+            <div class="studio-id">
+              <div class="studio-name-row">
+                <h3 class="studio-name">Hungry Monkey</h3>
+                <a class="tag-link" href="https://www.linkedin.com/company/hmonkey/" target="_blank" rel="noopener noreferrer" aria-label="Hungry Monkey on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+              </div>
+              <div class="studio-tags"><span class="tag role">Co-founder</span><span class="tag">Since 2025</span></div>
+            </div>
+          </div>
+          <div class="people">
+            <h4 class="people-label">Key people</h4>
+            <ul class="people-list">
+              <li><a class="person" href="https://www.linkedin.com/in/abdullah-zabir-bhuiyan-a1b80916/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-abdullah-zabir-bhuiyan-a1b80916.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Abdullah Zabir Bhuiyan</span><span class="person-role">Co-founder &amp; CTO</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/abid-ibna-rafique-ab8a0a117/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-abid-ibna-rafique-ab8a0a117.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Abid Ibna Rafique</span><span class="person-role">Creative lead</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/riasatazimkhan2274/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-riasatazimkhan2274.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Riasat Azim Khan</span><span class="person-role">Senior game programmer</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+              <li><a class="person" href="https://www.linkedin.com/in/contipy/" target="_blank" rel="noopener noreferrer"><img class="person-photo" src="img/team-contipy.webp" alt="" width="36" height="36" loading="lazy" decoding="async"><span class="person-text"><span class="person-name">Raul Porro</span><span class="person-role">Product manager</span></span><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg><span class="sr-only">, LinkedIn profile</span></a></li>
+            </ul>
+          </div>
+          <div class="studio-links">
+            <a class="store" href="https://hungrymonkey.games/" target="_blank" rel="noopener noreferrer">Website <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <!-- The core teams in Dhaka: local time and weather, and their next government holiday on a working day
+           (window.ZR_BD_HOLIDAYS in schedule.js) with its photo; filled in by site.js -->
+      <div class="team-panel" id="team-panel">
+        <figure class="team-photo"><img class="team-photo-img" src="img/bd-dhaka-720.webp" width="720" height="540" alt="Hatirjheel lake in Dhaka on a clear evening" loading="lazy" decoding="async"></figure>
+        <div class="team-here">
+          <p class="next-off-label">Core teams in Bangladesh</p>
+          <p class="team-line"><b class="team-now">--:--</b><span class="team-day"></span><span class="team-gap"></span></p>
+          <p class="team-wx" hidden><svg class="sky-ico is-sun" aria-hidden="true" focusable="false"><use href="#sun-ico"/></svg><span class="team-wx-text"></span></p>
+        </div>
+        <div class="next-off team-off" hidden>
+          <p class="next-off-head"><span class="next-off-label">Next government holiday</span><span class="next-off-count"></span></p>
+          <p class="next-off-name"><span class="next-off-title"></span><span class="next-off-date"></span></p>
+        </div>
+        <p class="team-credit"><span class="team-place">Hatirjheel, Dhaka</span> · Photo: <a class="team-author" href="https://commons.wikimedia.org/wiki/File:View_of_Hatirjheel_near_Moghbazar.jpg" target="_blank" rel="noopener noreferrer">Tawkir.ahmad</a>, <a class="team-license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>, cropped</p>
+      </div>
+    </section>
+
+    <section class="section" id="games" aria-labelledby="games-title">
+      <div class="section-head">
+        <h2 class="h2" id="games-title">Games I worked on</h2>
+      </div>
+      <div class="games games-partners">
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/bounce-defense.webp" alt="" width="52" height="52">
+            <div><h3>Bounce Defense</h3><p class="genre">Action</p></div>
+          </div>
+          <p class="publisher"><img src="img/voodoo.webp" alt="" width="22" height="22"><span>Published by <strong>Voodoo</strong></span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/bounce-defense/id6740627201" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.bouncedefense" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/last-survivor.webp" alt="" width="52" height="52">
+            <div><h3>Last Survivor</h3><p class="genre">Zombie shooter</p></div>
+          </div>
+          <p class="publisher"><img src="img/voodoo.webp" alt="" width="22" height="22"><span>Published by <strong>Voodoo</strong></span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/last-survivor-zombie-shooter/id6447337525" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.lastsurvivor" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/soul-quest.webp" alt="" width="52" height="52">
+            <div><h3>Soul Quest</h3><p class="genre">Epic war RPG</p></div>
+          </div>
+          <p class="publisher"><img src="img/homa.webp" alt="" width="22" height="22"><span>Published by <strong>Homa</strong></span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/soul-quest-epic-war-rpg/id6480004689" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/block-buster.webp" alt="" width="52" height="52">
+            <div><h3>Block Buster</h3><p class="genre">Block puzzle</p></div>
+          </div>
+          <p class="publisher"><img src="img/pixon.webp" alt="" width="22" height="22"><span>Published by <strong>PixOn</strong></span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/block-buster-block-puzzle/id6448782794" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.blockbuster" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/nightfall-defense.webp" alt="" width="52" height="52">
+            <div><h3>Nightfall Defense</h3><p class="genre">Roguelike defense, by Wiseman Games</p></div>
+          </div>
+          <p class="publisher"><span class="pub-mono" aria-hidden="true">S</span><span>Published by <strong>Supercent</strong></span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/nightfall-defense/id6746419797" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.wiseman.nfall" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <h3 class="sub-head games-head">Studio originals</h3>
+      <div class="games">
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/zen-ludo.webp" alt="" width="52" height="52">
+            <div><h3>Zen Ludo</h3><p class="genre">Ludo board game</p></div>
+          </div>
+          <p class="publisher"><img src="img/minigamelab.webp" alt="" width="22" height="22"><span><strong>MiniGameLab</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/zen-ludo/id6749306067" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.zenludo" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/card-master-29.webp" alt="" width="52" height="52">
+            <div><h3>29 Card Master</h3><p class="genre">The card game 29, offline</p></div>
+          </div>
+          <p class="publisher"><img src="img/minigamelab.webp" alt="" width="22" height="22"><span><strong>MiniGameLab</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://apps.apple.com/us/app/29-card-master/id1672726543" target="_blank" rel="noopener noreferrer">App Store <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.twentynine" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/parchisi.webp" alt="" width="52" height="52">
+            <div><h3>Parchisi Offline</h3><p class="genre">Classic board game</p></div>
+          </div>
+          <p class="publisher"><img src="img/minigamelab.webp" alt="" width="22" height="22"><span><strong>MiniGameLab</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.minigamelab.parchisi" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/carrom-world-3d.webp" alt="" width="52" height="52">
+            <div><h3>Carrom 3D</h3><p class="genre">Carrom disc pool, offline</p></div>
+          </div>
+          <p class="publisher"><img src="img/big-bang-studio.webp" alt="" width="22" height="22"><span><strong>Big Bang Studio</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.bigbang.carromworld3d" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/fight-for-world.webp" alt="" width="52" height="52">
+            <div><h3>Fight For World</h3><p class="genre">Sci-fi action</p></div>
+          </div>
+          <p class="publisher"><img src="img/big-bang-studio.webp" alt="" width="22" height="22"><span><strong>Big Bang Studio</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.bigbang.fightforworld" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="game">
+          <div class="game-top">
+            <img class="game-icon" src="img/train-escort.webp" alt="" width="52" height="52">
+            <div><h3>Train Escort</h3><p class="genre">Action tower defense</p></div>
+          </div>
+          <p class="publisher"><img src="img/big-bang-studio.webp" alt="" width="22" height="22"><span><strong>Big Bang Studio</strong> original</span></p>
+          <div class="stores">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.bigbang.trainescort" target="_blank" rel="noopener noreferrer">Google Play <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="writing" aria-labelledby="writing-title">
+      <div class="section-head">
+        <h2 class="h2" id="writing-title">Writing &amp; podcasts</h2>
+      </div>
+      <div class="features">
+        <a class="feature feature-article" href="https://www.linkedin.com/pulse/four-metrics-i-wish-knew-100-games-ago-zamilur-rashid-migs-fa29e" target="_blank" rel="noopener noreferrer" aria-label="Read the article on LinkedIn: Four Metrics I Wish I Knew 100 Games Ago">
+          <span class="feature-art" aria-hidden="true">
+            <svg viewBox="0 0 496 150" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <path class="fa-rule" d="M0 30H496M0 60H496M0 90H496M0 120H496"/>
+              <g transform="rotate(-3 248 112)">
+                <rect class="fa-paper" x="138" y="24" width="220" height="160" rx="14"/>
+                <rect class="fa-ink" x="160" y="44" width="112" height="10" rx="5"/>
+                <rect class="fa-ink fa-soft" x="160" y="62" width="76" height="8" rx="4"/>
+                <path class="fa-base" d="M160 136H336"/>
+                <rect class="fa-bar" x="166" y="113" width="26" height="23" rx="4"/>
+                <rect class="fa-bar" x="206" y="101" width="26" height="35" rx="4"/>
+                <rect class="fa-bar" x="246" y="107" width="26" height="29" rx="4"/>
+                <rect class="fa-bar fa-bar-hi" x="286" y="86" width="26" height="50" rx="4"/>
+                <path class="fa-trend" d="M179 101 219 89 259 95 299 74"/>
+                <circle class="fa-dot" cx="299" cy="74" r="5.5"/>
+              </g>
+            </svg>
+          </span>
+          <div class="feature-body">
+            <span class="feature-meta"><span class="feature-kind"><svg class="ico" aria-hidden="true" focusable="false"><use href="#article-ico"/></svg>Article</span><span>LinkedIn</span></span>
+            <h3 class="feature-title">Four Metrics I Wish I Knew 100 Games Ago</h3>
+            <p class="feature-desc">What actually matters when you test a hybrid-casual game.</p>
+            <span class="feature-foot">
+              <span class="feature-cta">Read the article <svg class="ico" aria-hidden="true" focusable="false"><use href="#arrow"/></svg></span>
+              <span class="feature-host">linkedin.com</span>
+            </span>
+          </div>
+        </a>
+        <a class="feature feature-podcast" href="https://nextbiggames.com/2026/05/09/minigamelab-hybrid-casual-studio-podcast/" target="_blank" rel="noopener noreferrer" aria-label="Watch the NextBigGames podcast episode: MiniGameLab's journey, building a hybrid-casual studio and getting published by Voodoo and Homa">
+          <span class="feature-art" aria-hidden="true">
+            <svg viewBox="0 0 496 150" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <path class="fp-wave fp-played" d="M10 72.5V77.5M22 59.5V90.5M34 68V82M46 68.5V81.5M58 59V91M70 61.5V88.5M82 65V85M94 55.5V94.5M106 54.5V95.5M118 58V92M130 54V96M142 54V96M154 49V101M166 63.5V86.5M178 60.5V89.5M190 51.5V98.5"/>
+              <path class="fp-wave" d="M298 52V98M310 68.5V81.5M322 52V98M334 58V92M346 46V104M358 50V100M370 67.5V82.5M382 59V91M394 51V99M406 57V93M418 59V91M430 61V89M442 56.5V93.5M454 57.5V92.5M466 67V83M478 68V82"/>
+              <circle class="fp-shadow" cx="248" cy="79" r="34"/>
+              <circle class="fp-button" cx="248" cy="75" r="34"/>
+              <path class="fp-play" d="M240.5 61.8v26.4a2 2 0 0 0 3 1.7l21.3-13.2a2 2 0 0 0 0-3.4L243.5 60.1a2 2 0 0 0-3 1.7Z"/>
+            </svg>
+          </span>
+          <div class="feature-body">
+            <span class="feature-meta"><span class="feature-kind"><svg class="ico" aria-hidden="true" focusable="false"><use href="#podcast-ico"/></svg>Podcast</span><span>NextBigGames · May 9, 2026</span></span>
+            <h3 class="feature-title">MiniGameLab's journey: building a hybrid-casual studio and getting published by Voodoo and Homa</h3>
+            <p class="feature-desc">With MiniGameLab CEO Dipayon Debnath Dip, on building the studio and working with publishers.</p>
+            <span class="feature-foot">
+              <span class="feature-cta">Watch the episode <svg class="ico" aria-hidden="true" focusable="false"><use href="#arrow"/></svg></span>
+              <span class="feature-host">nextbiggames.com</span>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="certifications" aria-labelledby="certs-title">
+      <div class="section-head">
+        <h2 class="h2" id="certs-title">Certifications</h2>
+        <p class="section-note">Scrum Alliance member since 2015. I took the ScrumMaster track through all three levels to Certified Scrum Professional, and added product owner and agile leadership credentials along the way.</p>
+      </div>
+
+      <div class="tracks">
+        <div class="track">
+          <div class="track-head">
+            <h3 class="track-name">ScrumMaster</h3>
+            <span class="track-meta">Scrum Alliance</span>
+            <span class="tag role">All three levels</span>
+          </div>
+          <ol class="path ordered">
+            <li class="cert">
+              <span class="cert-level">Foundation</span>
+              <span class="cert-abbr">CSM</span>
+              <span class="cert-name">Certified ScrumMaster</span>
+            </li>
+            <li class="cert">
+              <span class="cert-level">Advanced</span>
+              <span class="cert-abbr">A-CSM</span>
+              <span class="cert-name">Advanced Certified ScrumMaster</span>
+            </li>
+            <li class="cert cert-top">
+              <span class="cert-level">Professional</span>
+              <span class="cert-abbr">CSP-SM</span>
+              <span class="cert-name">Certified Scrum Professional ScrumMaster</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="track">
+          <div class="track-head">
+            <h3 class="track-name">Product Owner</h3>
+            <span class="track-meta">Scrum Alliance</span>
+          </div>
+          <ol class="path ordered">
+            <li class="cert">
+              <span class="cert-level">Foundation</span>
+              <span class="cert-abbr">CSPO</span>
+              <span class="cert-name">Certified Scrum Product Owner</span>
+            </li>
+            <li class="cert">
+              <span class="cert-level">Advanced</span>
+              <span class="cert-abbr">A-CSPO</span>
+              <span class="cert-name">Advanced Certified Scrum Product Owner</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="track">
+          <div class="track-head">
+            <h3 class="track-name">Leadership and coaching</h3>
+            <span class="track-meta">Scrum Alliance</span>
+          </div>
+          <ul class="path">
+            <li class="cert">
+              <span class="cert-level">Certification</span>
+              <span class="cert-abbr">CAL-1</span>
+              <span class="cert-name">Certified Agile Leadership I</span>
+            </li>
+            <li class="cert">
+              <span class="cert-level">Badge</span>
+              <span class="cert-abbr">Coaching</span>
+              <span class="cert-name">Introduction to Agile Coaching</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="other-certs">
+        <h3 class="sub-head">Other certificates</h3>
+        <ul class="cert-list">
+          <li>
+            <a class="cert-list-name" href="https://www.urmc.rochester.edu/clinical-translational-science-institute/collaboration/community-engagement/racism-in-health-research-course.aspx" target="_blank" rel="noopener noreferrer">Structural Racism in Healthcare and Research <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a>
+            <span class="cert-list-issuer">University of Rochester Medical Center</span>
+            <span class="cert-list-year">2023</span>
+          </li>
+          <li>
+            <span class="cert-list-name">Google AdWords Certified</span>
+            <span class="cert-list-issuer">Google</span>
+            <span class="cert-list-year">2016</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="edu-title">
+      <div class="section-head">
+        <h2 class="h2" id="edu-title">Education</h2>
+      </div>
+      <ul class="edu-list">
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">JS</span>
+          <div class="edu-body">
+            <p class="edu-degree">B.Sc. Psychology, blended program</p>
+            <p class="edu-school"><a class="edu-link" href="https://jgu.edu.in/jspc" target="_blank" rel="noopener noreferrer">Jindal School of Psychology and Counselling <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/jindal-school-of-psychology-and-counselling/" target="_blank" rel="noopener noreferrer" aria-label="Jindal School of Psychology and Counselling on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">2026–2029</span>
+        </li>
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">UY</span>
+          <div class="edu-body">
+            <p class="edu-degree">B.Sc. Economics</p>
+            <p class="edu-school"><a class="edu-link" href="https://www.york.ac.uk/" target="_blank" rel="noopener noreferrer">University of York <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/uniofyork/" target="_blank" rel="noopener noreferrer" aria-label="University of York on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">2009–2012</span>
+        </li>
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">BU</span>
+          <div class="edu-body">
+            <p class="edu-degree">Development Studies, master's coursework (8 of 14 courses)</p>
+            <p class="edu-school"><a class="edu-link" href="https://www.bracu.ac.bd/" target="_blank" rel="noopener noreferrer">BRAC University <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/brac-university/" target="_blank" rel="noopener noreferrer" aria-label="BRAC University on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">2013–2015</span>
+        </li>
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">DG</span>
+          <div class="edu-body">
+            <p class="edu-degree">University Foundation Program</p>
+            <p class="edu-school"><a class="edu-link" href="https://www.davidgamecollege.com/" target="_blank" rel="noopener noreferrer">David Game College <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/david-game-college/" target="_blank" rel="noopener noreferrer" aria-label="David Game College on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">2009</span>
+        </li>
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">ND</span>
+          <div class="edu-body">
+            <p class="edu-degree">HSC, Science</p>
+            <p class="edu-school"><a class="edu-link" href="https://ndc.edu.bd/" target="_blank" rel="noopener noreferrer">Notre Dame College <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/notre-dame-college-dhaka/" target="_blank" rel="noopener noreferrer" aria-label="Notre Dame College on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">2006–2008</span>
+        </li>
+        <li class="edu">
+          <span class="edu-mark" aria-hidden="true">IS</span>
+          <div class="edu-body">
+            <p class="edu-degree">SSC, Science</p>
+            <p class="edu-school"><a class="edu-link" href="https://iscm.edu.bd/" target="_blank" rel="noopener noreferrer">Ideal School and College <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a><a class="tag-link" href="https://www.linkedin.com/school/ideal-school-and-collegedhaka/" target="_blank" rel="noopener noreferrer" aria-label="Ideal School and College on LinkedIn"><svg class="ico card-ico" aria-hidden="true"><use href="#profile-card-ico"/></svg>LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+          </div>
+          <span class="edu-years">1997–2006</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="enjoy" aria-labelledby="enjoy-title">
+      <div class="section-head">
+        <h2 class="h2" id="enjoy-title">Things I truly enjoy</h2>
+      </div>
+      <ul class="enjoy">
+        <li class="enjoy-item"><span class="enjoy-ico" aria-hidden="true"><svg class="ico" focusable="false"><use href="#audiobook-ico"/></svg></span><span class="enjoy-name">Audiobooks</span></li>
+        <li class="enjoy-item"><span class="enjoy-ico" aria-hidden="true"><svg class="ico" focusable="false"><use href="#drive-ico"/></svg></span><span class="enjoy-name">Driving</span></li>
+        <li class="enjoy-item"><span class="enjoy-ico" aria-hidden="true"><svg class="ico" focusable="false"><use href="#cook-ico"/></svg></span><span class="enjoy-name">Cooking</span></li>
+        <li class="enjoy-item is-fave"><span class="enjoy-ico" aria-hidden="true"><svg class="ico" focusable="false"><use href="#cricket-ico"/></svg></span><span class="enjoy-name">Cricket</span><span class="fave">Favorite</span></li>
+        <li class="enjoy-item"><span class="enjoy-ico" aria-hidden="true"><svg class="ico" focusable="false"><use href="#family-ico"/></svg></span><span class="enjoy-name">Spending time with family</span></li>
+      </ul>
+    </section>
+
+    <section class="endcard" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2" id="contact-title">Say hello</h2>
+        <p>LinkedIn is the quickest way to reach me. Need playable ads for your game? Book a call with the Hungry Monkey team.</p>
+      </div>
+      <div class="endcard-actions">
+        <a class="btn btn-leaf" href="https://www.linkedin.com/in/zr1/" target="_blank" rel="noopener noreferrer">Message me on <span class="nowrap">LinkedIn <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+        <a class="btn btn-paper" href="https://hungrymonkey.games/#contact" target="_blank" rel="noopener noreferrer">Book a call with Hungry <span class="nowrap">Monkey <svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Zamilur Rashid · Rochester, Upstate New York</span>
+    <span>Updated September 2026 · <a href="https://www.linkedin.com/in/zr1/" target="_blank" rel="noopener noreferrer">linkedin.com/in/zr1</a></span>
+  </footer>
+
+</div>
+
+<script src="schedule.js"></script>
+<script src="play/list.js"></script>
+
+<script src="site.js"></script>
+</body>
+</html>

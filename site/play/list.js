@@ -1,0 +1,29 @@
+// Games on the Prototypes page (prototypes.html), newest first. The ship-prototype skill adds and updates entries.
+// Each build lives in play/<slug>/v<version>/: index.html, the files it needs, and cover.webp (800x1000).
+// Keep everything after "=" valid JSON: double quotes, no comments, no trailing commas.
+window.ZR_PROTOTYPES = [
+  {
+    "slug": "hamster-idle-pack",
+    "title": "Hamster Idle Pack",
+    "pitch": "Six hamster games in one burrow, linked by one level, badges and a daily chest.",
+    "genre": "Idle + bouncy action · Casual pack",
+    "orientation": "portrait",
+    "controls": "Tap",
+    "status": "Prototype",
+    "added": "2026-09-28",
+    "updated": "2026-09-28",
+    "version": 1
+  },
+  {
+    "slug": "roll-to-war",
+    "title": "Roll to War",
+    "pitch": "Roll dice to grow your army in a maze rally, then watch it fight real historical battles.",
+    "genre": "Dice auto battler · Hybrid-casual",
+    "orientation": "portrait",
+    "controls": "Tap",
+    "status": "Prototype",
+    "added": "2026-09-28",
+    "updated": "2026-09-28",
+    "version": 1
+  }
+];
