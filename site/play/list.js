@@ -3,6 +3,18 @@
 // Keep everything after "=" valid JSON: double quotes, no comments, no trailing commas.
 window.ZR_PROTOTYPES = [
   {
+    "slug": "pebblebrook",
+    "title": "Pebblebrook",
+    "pitch": "Run a tower's route once and its bots copy you on a loop; daily stars and new moves bring you back.",
+    "genre": "Train-the-bots runner · Idle village",
+    "orientation": "portrait",
+    "controls": "Tap and hold",
+    "status": "Prototype",
+    "added": "2026-10-01",
+    "updated": "2026-10-01",
+    "version": 1
+  },
+  {
     "slug": "battle-path",
     "title": "Battle Path",
     "pitch": "Buy huts on a hex map, merge your units and send them over two bridges to break the rival's camp.",
