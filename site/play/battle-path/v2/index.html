@@ -19,7 +19,36 @@ body{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-hig
 </head>
 <body>
 <div id="stage"><canvas id="c" tabindex="0"></canvas></div>
+<div id="gate" style="position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;background:#26243f;font-family:'Lilita One','Arial Black',sans-serif;color:#fff;touch-action:manipulation">
+<form id="gate-form" style="display:flex;flex-direction:column;align-items:center;gap:14px;width:min(80vw,300px)">
+<div style="font-size:30px;letter-spacing:1px">BATTLE PATH</div>
+<div style="font-family:system-ui,sans-serif;font-size:15px;opacity:.8">Enter the password to play</div>
+<input id="gate-pw" type="password" inputmode="numeric" autocomplete="off" style="width:100%;box-sizing:border-box;padding:12px;font-size:22px;text-align:center;border:3px solid #15132a;border-radius:12px;outline:none;background:#fff;color:#15132a">
+<button type="submit" style="width:100%;padding:12px;font:inherit;font-size:22px;color:#15132a;background:#ffc533;border:3px solid #15132a;border-radius:12px;cursor:pointer">PLAY</button>
+<div id="gate-err" style="font-family:system-ui,sans-serif;font-size:14px;color:#ff8a8a;min-height:18px"></div>
+</form>
+</div>
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var KEY = 'zr-battle-path-unlocked', PW = '1082';
+  function start() {
+    var g = document.getElementById('gate'); if (g) g.remove();
+    var s = document.createElement('script');
+    s.textContent = document.getElementById('game-src').textContent;
+    document.body.appendChild(s);
+  }
+  var ok = false; try { ok = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (ok) { start(); return; }
+  var gate = document.getElementById('gate'), pw = document.getElementById('gate-pw'), err = document.getElementById('gate-err');
+  gate.style.display = 'flex';
+  document.getElementById('gate-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (pw.value.trim() === PW) { try { localStorage.setItem(KEY, '1'); } catch (e2) {} pw.blur(); start(); }
+    else { err.textContent = 'Wrong password'; pw.value = ''; pw.focus(); }
+  });
+});
+</script>
+<script type="text/plain" id="game-src">
 'use strict';
 // Battle Paths: a prototype built to the miniGameLab design document (Battle Paths.pdf).
 // Build phase: buy huts from three "hut path" cards and place them on a 15-tile hex camp (placed huts can be dragged

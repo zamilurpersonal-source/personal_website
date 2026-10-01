@@ -11,8 +11,8 @@ window.ZR_PROTOTYPES = [
     "controls": "Tap, drag",
     "status": "Prototype",
     "added": "2026-09-30",
-    "updated": "2026-09-30",
-    "version": 1
+    "updated": "2026-10-01",
+    "version": 2
   },
   {
     "slug": "rtr-test",
