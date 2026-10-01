@@ -915,6 +915,30 @@
       </ul>
     </section>
 
+    <!-- Audible listening from listening.js, written weekly on Zamilur's Mac by tools/listening (see the repo).
+         Hidden until that file has data; filled in by site.js. -->
+    <section class="section" id="listening" aria-labelledby="listening-title" hidden>
+      <div class="section-head">
+        <h2 class="h2" id="listening-title">Listening</h2>
+        <p class="section-note">Audiobooks on Audible, updated weekly<span class="listen-updated"></span>.</p>
+      </div>
+      <dl class="listen-stats">
+        <div class="listen-stat" data-stat="hoursTotal" hidden><dt>Hours listened</dt><dd></dd></div>
+        <div class="listen-stat" data-stat="hoursThisYear" hidden><dt>Hours this year</dt><dd></dd></div>
+        <div class="listen-stat" data-stat="titlesFinished" hidden><dt>Titles finished</dt><dd></dd></div>
+      </dl>
+      <div class="listen-grid">
+        <div class="listen-now" hidden>
+          <p class="listen-label">Now listening</p>
+          <div class="listen-now-list"></div>
+        </div>
+        <div class="listen-done" hidden>
+          <p class="listen-label">Recently finished</p>
+          <ol class="listen-books"></ol>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="enjoy" aria-labelledby="enjoy-title">
       <div class="section-head">
         <h2 class="h2" id="enjoy-title">Things I truly enjoy</h2>
@@ -952,6 +976,7 @@
 
 <script src="schedule.js"></script>
 <script src="play/list.js"></script>
+<script src="listening.js"></script>
 
 <script src="site.js"></script>
 </body>

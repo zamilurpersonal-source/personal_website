@@ -920,6 +920,127 @@
     LIVE_WX.on(function (state) { wx = state; renderWx(); });
   })();
 
+  // Listening: Audible totals, the book in progress and the latest finished books, from listening.js
+  // (written weekly on Zamilur's Mac by tools/listening in the repo). Hidden until it has data.
+  (function () {
+    var section = document.getElementById('listening');
+    var data = window.ZR_LISTENING;
+    if (!section || !data || typeof data !== 'object') return;
+    var stats = data.stats || {};
+    var current = Array.isArray(data.current) ? data.current : [];
+    var finished = Array.isArray(data.finished) ? data.finished : [];
+    if (!current.length && !finished.length && typeof stats.hoursTotal !== 'number' && typeof stats.titlesFinished !== 'number') return;
+    var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    function https(u) { return typeof u === 'string' && /^https:\/\//.test(u) ? u : null; }
+    function emptyCover() {
+      var c = el('span', 'listen-cover is-empty');
+      c.setAttribute('aria-hidden', 'true');
+      c.innerHTML = '<svg class="ico" focusable="false"><use href="#audiobook-ico"/></svg>';
+      return c;
+    }
+    function cover(book) {
+      var src = https(book.cover);
+      if (!src) return emptyCover();
+      var img = el('img', 'listen-cover');
+      img.alt = '';
+      img.width = 160;
+      img.height = 160;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', function () { img.replaceWith(emptyCover()); });
+      img.src = src;
+      return img;
+    }
+    function link(book, cls) {
+      var href = https(book.url);
+      var a = el(href ? 'a' : 'div', cls);
+      if (href) {
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+      a.title = book.title + (book.author ? ' by ' + book.author : '');
+      return a;
+    }
+    function hoursText(min) {
+      var h = Math.floor(min / 60), m = min % 60;
+      return (h ? h + ' h' : '') + (h && m ? ' ' : '') + (m || !h ? m + ' min' : '');
+    }
+    function dateText(iso, withDay) {
+      var p = String(iso || '').split('-');
+      if (p.length < 2 || !MONTHS[+p[1] - 1]) return '';
+      return (withDay && p[2] ? +p[2] + ' ' : '') + MONTHS[+p[1] - 1] + ' ' + p[0];
+    }
+
+    // Totals
+    Array.prototype.forEach.call(section.querySelectorAll('.listen-stat'), function (box) {
+      var key = box.getAttribute('data-stat');
+      var value = stats[key];
+      if (typeof value !== 'number') return;
+      box.querySelector('dd').textContent = value.toLocaleString('en-US');
+      if (key === 'hoursThisYear' && stats.year) box.querySelector('dt').textContent = 'Hours in ' + stats.year;
+      box.hidden = false;
+    });
+    var shown = section.querySelectorAll('.listen-stat:not([hidden])').length;
+    section.querySelector('.listen-stats').hidden = !shown;
+    section.querySelector('.listen-stats').style.setProperty('--n', shown || 1);
+    if (data.updated) section.querySelector('.listen-updated').textContent = ', last on ' + dateText(data.updated, true).replace(/ \d{4}$/, '');
+
+    // Now listening
+    var nowBox = section.querySelector('.listen-now');
+    current.forEach(function (book) {
+      if (!book || !book.title) return;
+      var a = link(book, 'listen-book-now');
+      a.appendChild(cover(book));
+      var text = el('span', 'listen-now-text');
+      text.appendChild(el('span', 'listen-title', book.title));
+      if (book.author) text.appendChild(el('span', 'listen-author', book.author));
+      var pct = Math.max(0, Math.min(100, Math.round(+book.percent || 0)));
+      var bar = el('span', 'listen-bar');
+      bar.setAttribute('role', 'progressbar');
+      bar.setAttribute('aria-valuemin', '0');
+      bar.setAttribute('aria-valuemax', '100');
+      bar.setAttribute('aria-valuenow', String(pct));
+      bar.setAttribute('aria-label', pct + '% listened');
+      var fill = el('i');
+      fill.style.width = pct + '%';
+      bar.appendChild(fill);
+      text.appendChild(bar);
+      var left = typeof book.minutesLeft === 'number' && book.minutesLeft > 0 ? ' · ' + hoursText(book.minutesLeft) + ' left' : '';
+      text.appendChild(el('span', 'listen-progress', pct + '%' + left));
+      a.appendChild(text);
+      nowBox.querySelector('.listen-now-list').appendChild(a);
+    });
+    nowBox.hidden = !nowBox.querySelector('.listen-book-now');
+
+    // Recently finished
+    var doneBox = section.querySelector('.listen-done');
+    finished.forEach(function (book) {
+      if (!book || !book.title) return;
+      var li = el('li');
+      var a = link(book, 'listen-book');
+      a.appendChild(cover(book));
+      a.appendChild(el('span', 'listen-title', book.title));
+      var when = dateText(book.finished, false);
+      if (when) a.appendChild(el('span', 'listen-when', when));
+      li.appendChild(a);
+      doneBox.querySelector('.listen-books').appendChild(li);
+    });
+    doneBox.hidden = !doneBox.querySelector('li');
+
+    section.querySelector('.listen-grid').classList.toggle('is-single', nowBox.hidden || doneBox.hidden);
+    section.querySelector('.listen-grid').hidden = nowBox.hidden && doneBox.hidden;
+    section.hidden = false;
+  })();
+
   // "Play my prototypes": the chip reads Soon until play/list.js lists a game, then shows how many
   (function () {
     var chip = document.getElementById('proto-count');

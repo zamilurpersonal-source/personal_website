@@ -14,10 +14,16 @@ site/
   prototypes.html, .css, .js      Play my prototypes: the game cards and the full-screen player
   play/list.js                    the list of games on the Prototypes page
   play/<game>/v1/                 each game's files
+  listening.js                    Audible listening for the Listening section (written weekly, see below)
+tools/listening/                  the script that writes site/listening.js from Zamilur's Mac (not published)
 ```
 
 The main page and the Prototypes page change independently: main-page updates touch the top-level
 files in `site/`, and shipping a game touches only `site/play/`.
+
+`site/listening.js` is written by `tools/listening/zr_listening.py`, which runs once a week on
+Zamilur's Mac, reads his Audible library and listening stats there, and commits only that file
+through GitHub's API. See `tools/listening/README.md`.
 
 ## Good to know
 

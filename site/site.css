@@ -1887,6 +1887,192 @@ a { color: inherit; }
   .features { grid-template-columns: 1fr; }
 }
 
+/* ---------- Listening (Audible, from listening.js) ---------- */
+
+.listen-stats {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 16px;
+}
+
+.listen-stats[hidden],
+.listen-stat[hidden],
+.listen-grid[hidden],
+.listen-grid > [hidden] { display: none; }
+
+.listen-stat,
+.listen-now,
+.listen-done {
+  border: 1.5px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.listen-stat { padding: 16px 18px 18px; }
+
+.listen-stat dt,
+.listen-label {
+  margin: 0;
+  font: 500 10.5px/1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.listen-stat dd {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-weight: 820;
+  font-stretch: 110%;
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.listen-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 16px;
+}
+
+.listen-grid.is-single { grid-template-columns: minmax(0, 1fr); }
+
+.listen-now,
+.listen-done { padding: 16px 18px 18px; }
+
+.listen-label {
+  margin-bottom: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.listen-book-now,
+.listen-book {
+  color: inherit;
+  text-decoration: none;
+}
+
+.listen-book-now {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.listen-book-now + .listen-book-now { margin-top: 16px; }
+
+.listen-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--tag);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.listen-cover.is-empty {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.listen-cover.is-empty .ico {
+  width: 28px;
+  height: 28px;
+}
+
+.listen-now-text { min-width: 0; }
+
+.listen-title {
+  display: block;
+  font: 750 16px/1.25 var(--font-body);
+  text-wrap: balance;
+}
+
+.listen-author {
+  display: block;
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.listen-bar {
+  display: block;
+  height: 6px;
+  margin-top: 12px;
+  border-radius: 6px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.listen-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: var(--banana);
+}
+
+.listen-progress {
+  display: block;
+  margin-top: 7px;
+  font: 500 11px/1.3 var(--font-mono);
+  color: var(--muted);
+}
+
+.listen-books {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listen-book {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+}
+
+.listen-book .listen-title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 12.5px;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.listen-when {
+  margin-top: -3px;
+  font: 500 10px/1.2 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+a.listen-book-now:hover .listen-title,
+a.listen-book:hover .listen-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .listen-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .listen-stats { gap: 8px; }
+  .listen-stat { padding: 12px 12px 14px; }
+  .listen-stat dt { font-size: 9.5px; letter-spacing: 0.06em; }
+  .listen-books { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .listen-book-now { grid-template-columns: 88px minmax(0, 1fr); gap: 14px; }
+}
+
 /* ---------- Things I truly enjoy ---------- */
 
 .enjoy {
