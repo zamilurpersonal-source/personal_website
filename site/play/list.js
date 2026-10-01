@@ -3,6 +3,18 @@
 // Keep everything after "=" valid JSON: double quotes, no comments, no trailing commas.
 window.ZR_PROTOTYPES = [
   {
+    "slug": "rtr-test",
+    "title": "RTR-test",
+    "pitch": "Eight Saladin battles that teach every Roll to War mode: dice, wedges, troops, gathering and sieges.",
+    "genre": "Auto battler · Strategy campaign",
+    "orientation": "portrait",
+    "controls": "Tap, drag",
+    "status": "Prototype",
+    "added": "2026-09-30",
+    "updated": "2026-09-30",
+    "version": 1
+  },
+  {
     "slug": "hamster-idle-pack",
     "title": "Hamster Idle Pack",
     "pitch": "Six hamster games in one burrow, linked by one level, badges and a daily chest.",

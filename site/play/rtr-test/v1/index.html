@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>
+/* Site packaging: this game's saves live under the zr-rtr-test- prefix, so it never reads or wipes another game's. */
+(function () {
+  var P = 'zr-rtr-test-', S;
+  try { S = window.localStorage; S.getItem('x'); } catch (e) { return; }
+  function mine() { var o = []; for (var i = 0; i < S.length; i++) { var k = S.key(i); if (k && k.indexOf(P) === 0) o.push(k.slice(P.length)); } return o; }
+  var shim = {
+    getItem: function (k) { return S.getItem(P + k); },
+    setItem: function (k, v) { S.setItem(P + k, String(v)); },
+    removeItem: function (k) { S.removeItem(P + k); },
+    clear: function () { mine().forEach(function (k) { S.removeItem(P + k); }); },
+    key: function (i) { var m = mine(); return i < m.length ? m[i] : null; },
+    get length() { return mine().length; }
+  };
+  try { Object.defineProperty(window, 'localStorage', { configurable: true, get: function () { return shim; } }); } catch (e) {}
+})();
+</script>
+<title>Saladin Test Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;800;900&family=Signika:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* One full-screen canvas game in Roll to War's timber-and-gold look (a single dark look, set explicitly). */
+:root{--bg:#1c1410;--bg2:#2a1d14;--gold:#f2be4b;--text:#fff3d6;color-scheme:dark}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);overflow:hidden;overscroll-behavior:none}
+body{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;font-family:Signika,"Trebuchet MS",sans-serif}
+#stage{position:fixed;inset:0;box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,var(--bg2) 0%,var(--bg) 70%)}
+#rtw{display:block;touch-action:none;outline:none;box-shadow:0 0 40px rgba(0,0,0,.55)}
+#rtw:focus-visible{outline:3px solid var(--gold)}
+#tune{display:none}
+</style>
+<div id="stage"><canvas id="rtw" tabindex="0" aria-label="Roll to War, the Saladin test campaign: eight battles, each a first part (dice rally, wedge course, camp muster or resource gathering) and then a battle, with a lesson for every mode"></canvas></div>
+<div id="tune" hidden></div>
+<script>window.RTW_NO_AUTOMOUNT = true;</script>
+<script src="sal-a4ce253054.js"></script>
