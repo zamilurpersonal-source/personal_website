@@ -1,0 +1,14 @@
+{
+  "name": "Balance Lab · RTR-test",
+  "short_name": "Balance Lab",
+  "description": "Plays RTR-test over and over with bot players and reports its balance.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#17110c",
+  "theme_color": "#17110c",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

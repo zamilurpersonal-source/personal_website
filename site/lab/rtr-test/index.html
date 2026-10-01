@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Balance Lab · RTR-test</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#17110c">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Signika:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Balance Lab: a working dashboard in Roll to War's timber-and-gold colours (one dark look, set explicitly). */
+:root{--bg:#17110c;--panel:#221812;--panel2:#2b1f16;--line:#3d2c1f;--text:#f3e6cc;--muted:#b49e7e;--gold:#f2be4b;--goldD:#b8862a;--green:#3f9d5f;--amber:#cf8f25;--red:#c9473b;--grey:#5b4b3c;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Signika,"Trebuchet MS",system-ui,sans-serif}
+a{color:var(--gold)}
+header{position:sticky;top:0;z-index:5;background:linear-gradient(#2a1d14,#1d150f);border-bottom:2px solid var(--goldD);padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+h1{font:900 22px/1 Cinzel,serif;margin:0;color:var(--gold);letter-spacing:.04em}
+.sub{color:var(--muted);font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);font-size:13px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--grey)}
+.dot.on{background:var(--green);box-shadow:0 0 8px var(--green)}
+.spacer{flex:1}
+main{max-width:1200px;margin:0 auto;padding:16px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 14px}
+h2{font:700 15px/1.2 Cinzel,serif;letter-spacing:.06em;margin:0 0 10px;color:var(--gold);text-transform:uppercase}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{font:700 14px Signika,sans-serif;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 14px;cursor:pointer}
+button:hover{border-color:var(--goldD)}
+button.main{background:linear-gradient(#f6cf6a,#d99e2c);color:#2a1a0c;border-color:#8a5d1a;min-width:120px}
+button.stop{background:linear-gradient(#e2685a,#b23a2f);color:#fff;border-color:#7d241c}
+button:disabled{opacity:.45;cursor:default}
+label{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:14px}
+input[type=number]{width:58px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 6px;font:14px Signika,sans-serif}
+select{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 6px;font:14px Signika,sans-serif}
+.tbl{overflow-x:auto}
+table{border-collapse:separate;border-spacing:6px;width:100%;min-width:760px}
+th{font:700 12px Signika,sans-serif;color:var(--muted);text-align:left;text-transform:uppercase;letter-spacing:.06em;padding:0 6px}
+td{vertical-align:top}
+td.bat{min-width:190px;padding:8px 6px}
+td.bat b{display:block}
+td.bat small{color:var(--muted)}
+.cell{border-radius:9px;padding:8px 10px;background:var(--panel2);border:1px solid var(--line);min-width:130px}
+.cell .big{font:700 22px/1 Signika,sans-serif}
+.cell .ci{font-size:12px;color:var(--muted);margin-left:4px}
+.cell .meta{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
+.cell.g{background:rgba(63,157,95,.22);border-color:rgba(63,157,95,.7)}
+.cell.a{background:rgba(207,143,37,.2);border-color:rgba(207,143,37,.7)}
+.cell.r{background:rgba(201,71,59,.22);border-color:rgba(201,71,59,.75)}
+.cell.n{opacity:.75}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;margin-top:5px;background:rgba(0,0,0,.25)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 14px}
+.two section{margin:0}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+ul.list{margin:0;padding-left:18px}
+ul.list li{margin:4px 0}
+.sev3{color:#ff9b8f}.sev2{color:#f2c46a}.sev1{color:var(--text)}
+.muted{color:var(--muted)}
+.tune{border-top:1px solid var(--line);padding:8px 0}
+.tune:first-child{border-top:0}
+.bar{height:6px;border-radius:3px;background:var(--bg);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--gold)}
+details summary{cursor:pointer;color:var(--gold);font-weight:700}
+.note{font-size:13px;color:var(--muted)}
+.err{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#ffb3a8;white-space:pre-wrap}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--gold);color:#2a1a0c;font-weight:700;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+</style>
+<body>
+<header>
+  <div><h1>Balance Lab</h1><div class="sub" id="buildInfo">RTR-test · finding the current build…</div></div>
+  <span class="pill"><span class="dot" id="runDot"></span><span id="runText">Paused</span></span>
+  <span class="pill" id="gamesPill">0 games</span>
+  <span class="pill" id="ratePill">0 / min</span>
+  <span class="pill" id="timePill">0:00</span>
+  <span class="spacer"></span>
+  <button class="main" id="runBtn" disabled>Start</button>
+  <button id="copyBtn">Copy report for Claude</button>
+  <button id="dlBtn">Download report</button>
+</header>
+<main>
+  <section>
+    <h2>Settings</h2>
+    <div class="row" style="margin-bottom:10px">
+      <label>Workers <select id="workers"></select></label>
+      <label><input type="checkbox" id="autotune" checked> Auto-tune battles outside the target</label>
+      <label><input type="checkbox" id="awake" checked> Keep the screen awake while running</label>
+      <span class="spacer"></span>
+      <button id="resetBtn">Reset results</button>
+    </div>
+    <div class="row" id="targets"></div>
+    <div class="row" id="battlePick" style="margin-top:10px"></div>
+  </section>
+  <section>
+    <h2>Win rates by player</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <div class="note">Green: inside the target. Amber: within 10 points of it. Red: further out. A cell turns colour after 20 games; ± is the 95% margin. Under each: average stars, battle length, share of your army alive, games played.</div>
+  </section>
+  <div class="two">
+    <section><h2>Problems found</h2><ul class="list" id="problems"><li class="muted">Start the Lab: problems show here as the games pile up.</li></ul></section>
+    <section><h2>Suggested changes</h2><div id="tune"><div class="muted">With auto-tune on, a battle whose average player is outside the target gets a suggested enemy strength here.</div></div></section>
+  </div>
+  <section><h2>Errors</h2><div id="errors" class="muted">None.</div></section>
+  <section>
+    <details>
+      <summary>How the Lab works</summary>
+      <p>The Lab loads RTR-test's own game code from this site (the build on the Prototypes page) and plays its battles with the graphics off, in workers that use your computer's processor cores. Nothing runs on Claude: it costs no Claude credit. Copy the report and paste it in your chat with Claude, who applies the changes and ships a new build; reload the Lab to test it.</p>
+      <p id="profileText"></p>
+      <p>Each battle has one knob, the enemy's strength. The auto-tuner tries values of it (60 games each, halving the range up to five times, then a curve through all of them) until the average player lands in the middle of their target, then checks every player at that value (90 games each). If one knob cannot bring all three inside their targets, the report says so: that needs a design change rather than a number.</p>
+      <p>Keep this window open and the computer awake (it can run overnight). In Chrome or Edge, the install icon in the address bar (or the menu: Cast, save and share → Install page as app) makes it a desktop app with its own window. Results are kept in this browser for the build you are testing; a new build starts fresh.</p>
+    </details>
+  </section>
+</main>
+<div id="toast"></div>
+<script>
+'use strict';
+const SLUG = 'rtr-test', KEY = 'zr-lab-' + SLUG + '-', LAB_VERSION = 1;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(KEY + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(KEY + k, JSON.stringify(v)); } catch (e) { /* no storage: results last this visit */ } },
+};
+const $ = (id) => document.getElementById(id);
+const PROFILES = ['expert', 'average', 'careless', 'random'];
+const TARGETED = ['expert', 'average', 'careless'];
+const DEFAULT_TARGETS = { expert: [95, 100], average: [70, 85], careless: [30, 50] };
+const BATCH = 3, PROBE = 60, CHECK = 90, ITERS = 5, MIN_N = 20, TUNE_AFTER = 40;
+let targets = Object.assign({}, DEFAULT_TARGETS, store.get('targets', {}));
+let build = null, battles = [], profileText = {}, pool = [], ready = 0, running = false;
+let stats = {}, tune = {}, errors = [], games = 0, runMs = 0, runFrom = 0, rate = [], selected = null, wake = null, epoch = 0;
+
+/* ---------- finding the build on the site ---------- */
+async function findBuild() {
+  const q = new URLSearchParams(location.search);
+  if (q.get('bundle')) { const b = new URL(q.get('bundle'), location.href).href; return { version: 'test', bundle: b, name: b.split('/').pop() }; }
+  const txt = await (await fetch('/play/list.js?' + Date.now(), { cache: 'no-store' })).text();
+  const list = JSON.parse(txt.slice(txt.indexOf('=', txt.indexOf('ZR_PROTOTYPES')) + 1).trim().replace(/;\s*$/, ''));
+  const e = list.find((x) => x.slug === SLUG); if (!e) throw new Error('RTR-test is not on the Prototypes list');
+  const dir = '/play/' + SLUG + '/v' + e.version + '/';
+  const html = await (await fetch(dir + 'index.html', { cache: 'no-store' })).text();
+  const m = html.match(/sal-[0-9a-f]+\.js/); if (!m) throw new Error('no game bundle in ' + dir + 'index.html');
+  return { version: 'v' + e.version, updated: e.updated, bundle: new URL(dir + m[0], location.href).href, name: m[0] };
+}
+
+/* ---------- the workers ---------- */
+function spawn() {
+  const w = new Worker('worker.js'); w.busy = false; w.ok = false;
+  w.onmessage = (e) => onWorker(w, e.data);
+  w.onerror = (e) => { e.preventDefault(); w.busy = false; if (w.job) { addError({ battle: w.job.battle, profile: w.job.profile, seed: w.job.seeds.join(' '), error: 'worker crashed: ' + (e.message || 'error') }); unflight(w.job); w.job = null; } else addError({ battle: '-', profile: '-', seed: '-', error: 'worker: ' + (e.message || 'error') }); dispatch(w); };
+  w.postMessage({ type: 'load', bundle: build.bundle, scenarios: new URL('scenarios.js', location.href).href });
+  pool.push(w);
+}
+function setWorkers(n) {
+  while (pool.length > n) { const w = pool.pop(); if (w.job) unflight(w.job); w.terminate(); }
+  while (pool.length < n) spawn();
+}
+function onWorker(w, m) {
+  if (m.type === 'ready') {
+    w.ok = true; ready++;
+    if (!battles.length) {
+      battles = m.knobs; profileText = m.profileText || {};
+      if (!selected) selected = new Set(store.get('battles', battles.map((b) => b.id)));
+      drawSettings(); $('runBtn').disabled = false;
+      $('profileText').innerHTML = 'The bot players: ' + PROFILES.map((p) => '<b>' + p + '</b>: ' + esc(profileText[p] || '')).join('; ') + '.';
+    }
+    dispatch(w); return;
+  }
+  if (m.type === 'fail') { w.ok = false; $('buildInfo').textContent = 'The game failed to load in the Lab: ' + m.error; return; }
+  if (m.type === 'done') { w.busy = false; w.job = null; take(m.job, m.results); dispatch(w); }
+}
+function dispatch(w) {
+  if (!running || !w.ok || w.busy) return;
+  const job = nextJob(); if (!job) return;
+  w.busy = true; w.job = job; w.postMessage(job);
+}
+function pump() { for (const w of pool) dispatch(w); }
+
+/* ---------- what to play next ---------- */
+const blank = () => ({ n: 0, w: 0, st: 0, t: 0, sv: 0, ms: 0, stN: 0, flight: 0, next: 0 });
+const keyOf = (b, p) => b + '|' + p;
+function nextJob() {
+  for (const id in tune) { const j = tuneNext(tune[id]); if (j) return j; }
+  let pickK = null, load = Infinity;
+  for (const b of battles) {
+    if (!selected.has(b.id)) continue;
+    for (const p of PROFILES) { const k = keyOf(b.id, p), s = stats[k] || (stats[k] = blank()), l = s.n + s.flight; if (l < load) { load = l; pickK = [k, b.id, p]; } }
+  }
+  if (!pickK) return null;
+  const [k, b, p] = pickK, s = stats[k], seeds = [];
+  for (let i = 0; i < BATCH; i++) { s.next++; seeds.push(1000 + s.next * 7919 + PROFILES.indexOf(p) * 104729); }
+  s.flight += seeds.length;
+  return { type: 'run', kind: 'measure', epoch, key: k, battle: b, profile: p, seeds, f: 1 };
+}
+// a job that will never come back (its worker was stopped or crashed): free its place so it is played again
+function unflight(job) {
+  if (job.epoch !== epoch) return;
+  if (job.kind === 'measure' && stats[job.key]) stats[job.key].flight = Math.max(0, stats[job.key].flight - job.seeds.length);
+  const T = job.kind === 'tune' && tune[job.id]; if (!T || T.gen !== job.gen) return;
+  if (job.step === 'probe' && T.phase === 'probe' && job.iter === T.iter) T.issued -= job.seeds.length;
+  else if (job.step === 'check' && T.check[job.profile]) T.check[job.profile].issued -= job.seeds.length;
+}
+function take(job, results) {
+  const now = Date.now();
+  if (job.epoch !== epoch) return;   // played before a reset
+  for (const r of results) {
+    games++; rate.push(now);
+    if (r.error) addError({ battle: job.battle, profile: job.profile, seed: r.seed, f: job.f, error: r.error });
+  }
+  if (job.kind === 'measure') {
+    const s = stats[job.key]; s.flight = Math.max(0, s.flight - job.seeds.length);
+    for (const r of results) { if (r.error) continue; s.n++; s.w += r.win; s.t += r.t; s.sv += r.surv; s.ms += r.ms || 0; if (r.stars != null) { s.st += r.stars; s.stN++; } }
+  } else tuneTake(job, results);
+  dirty = true;
+}
+function addError(e) { e.at = new Date().toLocaleTimeString(); errors.push(e); if (errors.length > 60) errors.shift(); dirty = true; }
+
+/* ---------- the auto-tuner: bisection on the enemy's strength ---------- */
+function startTune(id) {
+  tune[id] = { id, gen: Math.random().toString(36).slice(2), phase: 'probe', lo: 0.5, hi: 1.8, iter: 0, f: null, issued: 0, got: [], probes: [], check: {}, at: games };
+  dirty = true; pump();
+}
+function tuneNext(T) {
+  const seeds = (base, from, n) => Array.from({ length: n }, (_, i) => base + (from + i) * 7919);
+  if (T.phase === 'probe') {
+    if (T.f == null) { T.f = (T.lo + T.hi) / 2; T.issued = 0; T.got = []; }
+    if (T.issued < PROBE) { const n = Math.min(BATCH, PROBE - T.issued), s = seeds(5e6 + T.iter * 1e5, T.issued, n); T.issued += n; return { type: 'run', kind: 'tune', epoch, gen: T.gen, id: T.id, step: 'probe', iter: T.iter, battle: T.id, profile: 'average', seeds: s, f: T.f }; }
+    return null;
+  }
+  if (T.phase === 'check') {
+    for (const p of TARGETED) {
+      const c = T.check[p] || (T.check[p] = { issued: 0, got: [] });
+      if (c.issued < CHECK) { const n = Math.min(BATCH, CHECK - c.issued), s = seeds(7e6 + TARGETED.indexOf(p) * 1e5, c.issued, n); c.issued += n; return { type: 'run', kind: 'tune', epoch, gen: T.gen, id: T.id, step: 'check', battle: T.id, profile: p, seeds: s, f: T.best }; }
+    }
+  }
+  return null;
+}
+const mean = (a, k) => (a.length ? a.reduce((s, r) => s + r[k], 0) / a.length : 0);
+function tuneTake(job, results) {
+  const T = tune[job.id]; if (!T || T.gen !== job.gen) return;
+  const ok = results.filter((r) => !r.error);
+  if (job.step === 'probe' && T.phase === 'probe' && job.iter === T.iter) {
+    T.got.push(...ok); T.recv = (T.recv || 0) + results.length;
+    if (T.recv >= PROBE) {
+      const win = mean(T.got, 'win'), mid = (targets.average[0] + targets.average[1]) / 200;
+      T.probes.push({ f: T.f, win, n: T.got.length });
+      if (win > mid) T.lo = T.f; else T.hi = T.f;
+      T.iter++; T.f = null; T.recv = 0;
+      // a probe right on target ends the search; otherwise, after the last probe, a curve through every probe
+      // (the log-odds of winning against the factor) gives the value, which is steadier than the last halving
+      const onTarget = Math.abs(win - mid) <= 0.04;
+      if (onTarget || T.iter >= ITERS) {
+        const fit = onTarget ? null : fitFactor(T.probes, mid);
+        const f = onTarget ? T.probes[T.probes.length - 1].f : fit != null ? fit : (T.lo + T.hi) / 2;
+        T.best = Math.round(Math.max(0.5, Math.min(1.8, f)) * 1000) / 1000; T.how = onTarget ? 'a probe on target' : fit != null ? 'a curve through ' + T.probes.length + ' probes' : 'halving';
+        T.phase = 'check';
+      }
+    }
+  } else if (job.step === 'check' && T.phase === 'check') {
+    const c = T.check[job.profile]; c.got.push(...ok); c.recv = (c.recv || 0) + results.length;
+    if (TARGETED.every((p) => T.check[p] && (T.check[p].recv || 0) >= CHECK)) {
+      T.phase = 'done'; T.doneAt = games;
+      T.result = Object.fromEntries(TARGETED.map((p) => { const g = T.check[p].got, w = mean(g, 'win'); return [p, { win: w, ci: margin(w, Math.max(1, g.length)), stars: mean(g, 'stars'), surv: mean(g, 'surv'), n: g.length }]; }));
+    }
+  }
+}
+// weighted least squares of logit(win) on the factor; null when the probes show no clear downward slope
+function fitFactor(P, mid) {
+  const lg = (x) => { const c = Math.min(0.97, Math.max(0.03, x)); return Math.log(c / (1 - c)); };
+  let sw = 0, sx = 0, sy = 0, sxx = 0, sxy = 0;
+  for (const p of P) { const w = p.n; sw += w; sx += w * p.f; sy += w * lg(p.win); sxx += w * p.f * p.f; sxy += w * p.f * lg(p.win); }
+  const den = sw * sxx - sx * sx; if (den <= 1e-9) return null;
+  const b = (sw * sxy - sx * sy) / den, a = (sy - b * sx) / sw;
+  if (b >= -0.5) return null;
+  const lo = Math.min(...P.map((p) => p.f)) - 0.1, hi = Math.max(...P.map((p) => p.f)) + 0.1;
+  return Math.max(lo, Math.min(hi, (lg(mid) - a) / b));
+}
+function tuneProgress(T) { if (T.phase === 'done') return 1; if (T.phase === 'check') return (ITERS + TARGETED.reduce((s, p) => s + Math.min(CHECK, (T.check[p] && T.check[p].recv) || 0), 0) / (CHECK * TARGETED.length)) / (ITERS + 1); return (T.iter + ((T.recv || 0) / PROBE)) / (ITERS + 1); }
+
+/* ---------- reading the results ---------- */
+// the 95% margin of a win rate (Wilson's interval, honest with few games and with 0% or 100%)
+const margin = (w, n) => { const z = 1.96, d = 1 + (z * z) / n; return (z * Math.sqrt((w * (1 - w)) / n + (z * z) / (4 * n * n))) / d; };
+function cellOf(b, p) { const s = stats[keyOf(b, p)]; if (!s || !s.n) return null; const w = s.w / s.n; return { n: s.n, win: w, ci: margin(w, s.n), stars: s.stN ? s.st / s.stN : null, t: s.t / s.n, surv: s.sv / s.n, ms: s.ms / s.n }; }
+function band(p, win) { const T = targets[p]; if (!T) return null; const x = win * 100; if (x >= T[0] && x <= T[1]) return 'g'; const d = x < T[0] ? T[0] - x : x - T[1]; return d <= 10 ? 'a' : 'r'; }
+const pct = (x) => Math.round(x * 100) + '%';
+const fmtT = (s) => Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const knobText = (v, f) => { const r = (x) => (Math.abs(x) >= 10 ? Math.round(x * f) : Math.round(x * f * 100) / 100); return Array.isArray(v) ? v.map(r).join(', ') : String(r(v)); };
+function problems() {
+  const out = [];
+  const errsBy = {}; for (const e of errors) { const k = e.battle + ': ' + e.error; errsBy[k] = (errsBy[k] || 0) + 1; }
+  for (const k in errsBy) out.push({ sev: 3, text: 'Error in ' + k + ' (' + errsBy[k] + '×; seeds in the error list)' });
+  for (const b of battles) {
+    if (!selected.has(b.id)) continue;
+    const c = Object.fromEntries(PROFILES.map((p) => [p, cellOf(b.id, p)]));
+    if (!TARGETED.every((p) => c[p] && c[p].n >= MIN_N)) continue;
+    const n = b.name;
+    if (c.expert.win * 100 < targets.expert[0]) out.push({ sev: 3, text: `${n}: even the expert wins only ${pct(c.expert.win)} (target ${targets.expert[0]}%+).` });
+    if (band('average', c.average.win) !== 'g') out.push({ sev: band('average', c.average.win) === 'r' ? 3 : 2, text: `${n}: the average player wins ${pct(c.average.win)}, target ${targets.average[0]}–${targets.average[1]}% (${c.average.win * 100 < targets.average[0] ? 'too hard' : 'too easy'}).` });
+    if (band('careless', c.careless.win) !== 'g') out.push({ sev: 2, text: `${n}: the careless player wins ${pct(c.careless.win)}, target ${targets.careless[0]}–${targets.careless[1]}% (${c.careless.win * 100 < targets.careless[0] ? 'too punishing' : 'mistakes cost too little'}).` });
+    if (c.careless.win >= c.expert.win - 0.1 && c.careless.n >= MIN_N) out.push({ sev: 2, text: `${n}: skill barely matters to the result (careless ${pct(c.careless.win)} against expert ${pct(c.expert.win)}).` });
+    if (c.expert.surv >= 0.97) out.push({ sev: 1, text: `${n}: the expert wins with almost no losses (${pct(c.expert.surv)} of the army alive).` });
+    if (c.average.stars != null && c.average.stars >= 2.8) out.push({ sev: 1, text: `${n}: three stars come too easily (average player ${c.average.stars.toFixed(1)}).` });
+    const tAvg = mean(TARGETED.map((p) => c[p]), 't'); if (tAvg > 110) out.push({ sev: 1, text: `${n}: long battles (${fmtT(tAvg)} on average).` });
+    const tn = tune[b.id]; if (tn && tn.phase === 'done') { const miss = TARGETED.filter((p) => band(p, tn.result[p].win) !== 'g'); if (miss.length) out.push({ sev: 2, text: `${n}: no enemy strength puts every player inside the target (at the suggested value: ${TARGETED.map((p) => p + ' ' + pct(tn.result[p].win)).join(', ')}). This needs a design change, not a number.` }); }
+  }
+  return out.sort((a, b) => b.sev - a.sev);
+}
+
+/* ---------- drawing ---------- */
+let dirty = true;
+function drawSettings() {
+  $('targets').innerHTML = '<span class="muted">Targets (win %):</span>' + TARGETED.map((p) => `<label>${p} <input type="number" min="0" max="100" data-p="${p}" data-i="0" value="${targets[p][0]}"> – <input type="number" min="0" max="100" data-p="${p}" data-i="1" value="${targets[p][1]}"></label>`).join('') + '<button id="tgtReset">Default targets</button>';
+  $('targets').querySelectorAll('input').forEach((el) => el.onchange = () => { const p = el.dataset.p, i = +el.dataset.i; targets[p] = targets[p].slice(); targets[p][i] = Math.max(0, Math.min(100, +el.value || 0)); store.set('targets', targets); dirty = true; });
+  $('tgtReset').onclick = () => { targets = JSON.parse(JSON.stringify(DEFAULT_TARGETS)); store.set('targets', targets); drawSettings(); dirty = true; };
+  $('battlePick').innerHTML = '<span class="muted">Battles:</span>' + battles.map((b) => `<label><input type="checkbox" data-b="${b.id}" ${selected.has(b.id) ? 'checked' : ''}> ${esc(b.name.split(':')[0])}</label>`).join('');
+  $('battlePick').querySelectorAll('input').forEach((el) => el.onchange = () => { if (el.checked) selected.add(el.dataset.b); else selected.delete(el.dataset.b); store.set('battles', [...selected]); dirty = true; });
+}
+function draw() {
+  if (!dirty) return; dirty = false;
+  const head = '<tr><th>Battle</th>' + PROFILES.map((p) => `<th>${p}${targets[p] ? ` <span class="muted">${targets[p][0]}–${targets[p][1]}%</span>` : ''}</th>`).join('') + '</tr>';
+  const rows = battles.filter((b) => selected.has(b.id)).map((b) => {
+    const cells = PROFILES.map((p) => {
+      const c = cellOf(b.id, p); if (!c) return '<td><div class="cell n"><span class="muted">waiting…</span></div></td>';
+      const cls = c.n < MIN_N || !targets[p] ? 'n' : band(p, c.win);
+      return `<td><div class="cell ${cls}"><span class="big">${pct(c.win)}</span><span class="ci">±${Math.round(c.ci * 100)}</span><div class="meta">${c.stars != null ? '★' + c.stars.toFixed(1) + ' · ' : ''}${fmtT(c.t)} · ${pct(c.surv)} alive<br>${c.n} games${c.n < MIN_N ? ' · measuring' : ''}</div></div></td>`;
+    }).join('');
+    const tn = tune[b.id], tag = tn ? (tn.phase === 'done' ? '<span class="tag">suggestion ready</span>' : '<span class="tag">tuning…</span>') : '';
+    return `<tr><td class="bat"><b>${esc(b.name)}</b><small>${esc(b.label)}: ${esc(knobText(b.value, 1))}</small><br>${tag}</td>${cells}</tr>`;
+  }).join('');
+  $('tbl').innerHTML = head + rows;
+  const pr = problems();
+  $('problems').innerHTML = pr.length ? pr.map((x) => `<li class="sev${x.sev}">${esc(x.text)}</li>`).join('') : `<li class="muted">${games ? 'Nothing out of line yet.' : 'Start the Lab: problems show here as the games pile up.'}</li>`;
+  const tl = Object.values(tune);
+  $('tune').innerHTML = tl.length ? tl.map((T) => {
+    const b = battles.find((x) => x.id === T.id); if (!b) return '';
+    if (T.phase !== 'done') return `<div class="tune"><b>${esc(b.name)}</b> <span class="muted">· tuning ${esc(b.label)}…</span><div class="bar"><i style="width:${Math.round(tuneProgress(T) * 100)}%"></i></div></div>`;
+    return `<div class="tune"><b>${esc(b.name)}</b><br>${esc(b.label)}: <b>${esc(knobText(b.value, 1))} → ${esc(knobText(b.value, T.best))}</b> <span class="muted">(×${T.best})</span><br><span class="muted">At that value: ${TARGETED.map((p) => `${p} ${pct(T.result[p].win)}`).join(' · ')}</span><br><span class="muted">${esc(b.code)}</span> <button data-retune="${T.id}" style="padding:3px 8px;font-size:12px">Re-tune</button></div>`;
+  }).join('') : '<div class="muted">With auto-tune on, a battle whose average player is outside the target gets a suggested enemy strength here.</div>';
+  $('tune').querySelectorAll('[data-retune]').forEach((el) => el.onclick = () => startTune(el.dataset.retune));
+  $('errors').innerHTML = errors.length ? errors.slice(-20).reverse().map((e) => `<div class="err">${esc(e.at)} · ${esc(e.battle)} · ${esc(e.profile)} · seed ${esc(e.seed)}${e.f && e.f !== 1 ? ' · ×' + e.f : ''}: ${esc(e.error)}</div>`).join('') : 'None.';
+}
+function tick() {
+  const now = Date.now();
+  rate = rate.filter((t) => now - t < 60000);
+  const ms = runMs + (running ? now - runFrom : 0);
+  $('gamesPill').textContent = games.toLocaleString() + ' games';
+  $('ratePill').textContent = rate.length.toLocaleString() + ' / min';
+  $('timePill').textContent = fmtDur(ms);
+  if (running && $('autotune').checked) for (const b of battles) {
+    if (!selected.has(b.id) || tune[b.id]) continue;
+    const c = cellOf(b.id, 'average'); if (c && c.n >= TUNE_AFTER && band('average', c.win) !== 'g') startTune(b.id);
+  }
+  draw();
+}
+const fmtDur = (ms) => { const s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? h + ' h ' + String(m).padStart(2, '0') + ' min' : m + ':' + String(s % 60).padStart(2, '0'); };
+
+/* ---------- the report for Claude ---------- */
+function report() {
+  const L = [], d = new Date();
+  L.push('# Balance Lab report · RTR-test');
+  L.push(`Build ${build ? build.version + ' (' + build.name + ')' : '?'} · Lab ${LAB_VERSION} · ${d.toISOString().slice(0, 16).replace('T', ' ')} UTC · ${games.toLocaleString()} games in ${fmtDur(runMs + (running ? Date.now() - runFrom : 0))} · ${pool.length} workers`);
+  L.push(`Targets (win %): ${TARGETED.map((p) => `${p} ${targets[p][0]}–${targets[p][1]}`).join(' · ')}`);
+  L.push('Players: ' + PROFILES.map((p) => `${p} = ${profileText[p] || ''}`).join('; ') + '.');
+  L.push('');
+  L.push('| Battle | Knob (now) | ' + PROFILES.join(' | ') + ' |');
+  L.push('|---|---|' + PROFILES.map(() => '---').join('|') + '|');
+  for (const b of battles) {
+    if (!selected.has(b.id)) continue;
+    const cells = PROFILES.map((p) => { const c = cellOf(b.id, p); if (!c) return '–'; const flag = targets[p] && c.n >= MIN_N ? { g: '', a: ' ⚠', r: ' ✗' }[band(p, c.win)] : ''; return `${pct(c.win)}±${Math.round(c.ci * 100)}${flag} ★${c.stars != null ? c.stars.toFixed(1) : '–'} ${fmtT(c.t)} ${pct(c.surv)} alive (n ${c.n})`; });
+    L.push(`| ${b.name} | ${b.label} = ${knobText(b.value, 1)} | ${cells.join(' | ')} |`);
+  }
+  L.push('');
+  const pr = problems();
+  L.push('## Problems'); L.push(pr.length ? pr.map((x) => '- ' + x.text).join('\n') : '- None found.');
+  L.push('');
+  L.push('## Suggested changes (auto-tuner)');
+  const done = Object.values(tune).filter((T) => T.phase === 'done');
+  if (!done.length) L.push('- None yet.');
+  for (const T of done) { const b = battles.find((x) => x.id === T.id); L.push(`- ${b.name}: ${b.label} ${knobText(b.value, 1)} → ${knobText(b.value, T.best)} (×${T.best}, from ${T.how}; ${b.code}). At that value (90 games each): ${TARGETED.map((p) => `${p} ${pct(T.result[p].win)}±${Math.round((T.result[p].ci || 0) * 100)} ★${T.result[p].stars.toFixed(1)}`).join(', ')}. Probes (×factor: average win): ${T.probes.map((x) => `×${Math.round(x.f * 100) / 100}: ${pct(x.win)}`).join(', ')}.`); }
+  const open = Object.values(tune).filter((T) => T.phase !== 'done');
+  if (open.length) L.push(`- Still tuning: ${open.map((T) => battles.find((x) => x.id === T.id).name).join(', ')}.`);
+  L.push('');
+  L.push('## Errors');
+  if (!errors.length) L.push('- None.');
+  else { const seen = {}; for (const e of errors) { const k = e.battle + '|' + e.error; if (seen[k]) { seen[k].n++; continue; } seen[k] = { e, n: 1 }; } for (const k in seen) { const { e, n } = seen[k]; L.push(`- ${e.battle} · ${e.profile} · seed ${e.seed}${e.f && e.f !== 1 ? ' ×' + e.f : ''}: ${e.error} (${n}×)`); } }
+  L.push('');
+  L.push('Replay a game in the workspace: node sal8/lab/test-node.js (scenarios in sal8/lab/scenarios.js mirror tools/bal.js).');
+  return L.join('\n');
+}
+function toast(s) { const t = $('toast'); t.textContent = s; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1800); }
+$('copyBtn').onclick = async () => {
+  const txt = report();
+  try { await navigator.clipboard.writeText(txt); toast('Report copied: paste it in your chat with Claude'); }
+  catch (e) { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('Report copied'); } catch (e2) { toast('Copy failed: use Download'); } ta.remove(); }
+};
+$('dlBtn').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([report()], { type: 'text/markdown' })); a.download = 'balance-report-' + SLUG + '-' + new Date().toISOString().slice(0, 16).replace(/[T:]/g, '-') + '.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
+
+/* ---------- running ---------- */
+async function setWake(on) {
+  try { if (on && $('awake').checked && 'wakeLock' in navigator && !wake && document.visibilityState === 'visible') { wake = await navigator.wakeLock.request('screen'); wake.addEventListener('release', () => { wake = null; }); } else if (!on && wake) { await wake.release(); wake = null; } } catch (e) { wake = null; }
+}
+document.addEventListener('visibilitychange', () => { if (running) setWake(true); });
+$('runBtn').onclick = () => {
+  running = !running;
+  if (running) { runFrom = Date.now(); pump(); } else { runMs += Date.now() - runFrom; save(); }
+  setWake(running);
+  $('runBtn').textContent = running ? 'Pause' : 'Start'; $('runBtn').className = running ? 'stop' : 'main';
+  $('runDot').classList.toggle('on', running); $('runText').textContent = running ? 'Running' : 'Paused';
+};
+$('resetBtn').onclick = () => { epoch++; stats = {}; tune = {}; errors = []; games = 0; runMs = 0; runFrom = Date.now(); rate = []; save(); dirty = true; };
+$('awake').onchange = () => setWake(running);
+function save() {
+  if (!build) return;
+  const clean = {}; for (const k in stats) { const s = Object.assign({}, stats[k]); s.flight = 0; clean[k] = s; }
+  const doneTune = Object.fromEntries(Object.entries(tune).filter(([, T]) => T.phase === 'done'));
+  store.set('state', { bundle: build.name, lab: LAB_VERSION, stats: clean, tune: doneTune, errors, games, runMs: runMs + (running ? Date.now() - runFrom : 0) });
+  if (running) { runMs += Date.now() - runFrom; runFrom = Date.now(); }
+}
+function restore() {
+  const st = store.get('state', null);
+  if (!st || st.bundle !== build.name || st.lab !== LAB_VERSION) return;
+  stats = st.stats || {}; tune = st.tune || {}; errors = st.errors || []; games = st.games || 0; runMs = st.runMs || 0;
+}
+(async function boot() {
+  const cores = Math.max(1, navigator.hardwareConcurrency || 2), def = Math.max(1, Math.min(12, cores - 1));
+  const saved = store.get('workers', def);
+  $('workers').innerHTML = Array.from({ length: Math.min(16, cores) }, (_, i) => `<option value="${i + 1}" ${i + 1 === saved ? 'selected' : ''}>${i + 1}${i + 1 === def ? ' (suggested)' : ''}</option>`).join('');
+  $('workers').onchange = () => { const n = +$('workers').value; store.set('workers', n); if (build) { setWorkers(n); pump(); } };
+  try {
+    build = await findBuild();
+    $('buildInfo').textContent = `RTR-test ${build.version} · ${build.name}${build.updated ? ' · shipped ' + build.updated : ''}`;
+    restore();
+    setWorkers(Math.min(+$('workers').value || def, 16));
+  } catch (e) { $('buildInfo').textContent = 'Could not find the game: ' + e.message; }
+  setInterval(tick, 1000); setInterval(save, 15000);
+  window.addEventListener('pagehide', save);
+})();
+</script>
+</body>
+</html>
