@@ -28,15 +28,15 @@ window.ZR_PROTOTYPES = [
   },
   {
     "slug": "pebblebrook",
-    "title": "Pebblebrook",
-    "pitch": "Run a tower's route once and its bots copy you on a loop; daily stars and new moves bring you back.",
-    "genre": "Train-the-bots runner · Idle village",
+    "title": "Pebblebrook 2040",
+    "pitch": "Run a tower's route once and bots repeat it on a loop, growing a cozy 2040 village and power grid.",
+    "genre": "Train-the-bots platformer · Idle village",
     "orientation": "portrait",
     "controls": "Tap and hold",
     "status": "Prototype",
     "added": "2026-10-01",
-    "updated": "2026-10-01",
-    "version": 1
+    "updated": "2026-10-03",
+    "version": 2
   },
   {
     "slug": "battle-path",
