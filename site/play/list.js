@@ -4,15 +4,15 @@
 window.ZR_PROTOTYPES = [
   {
     "slug": "bounce-battle",
-    "title": "Bounce Battle",
-    "pitch": "A hero bounces round your board, and every building it hits works faster to attack or defend.",
+    "title": "Fort Bump",
+    "pitch": "A hero bounces round your fort, and every building it bumps sends soldiers or shoots faster.",
     "genre": "Bounce auto battler · Hybrid-casual",
     "orientation": "portrait",
     "controls": "Drag",
     "status": "Prototype",
     "added": "2026-10-02",
-    "updated": "2026-10-02",
-    "version": 1
+    "updated": "2026-10-05",
+    "version": 2
   },
   {
     "slug": "coin-adventure",
