@@ -3,6 +3,18 @@
 // Keep everything after "=" valid JSON: double quotes, no comments, no trailing commas.
 window.ZR_PROTOTYPES = [
   {
+    "slug": "bouncy-colony",
+    "title": "Bouncy Colony",
+    "pitch": "Aim your Queen's launches: bouncing critters paint the board and break rival Queens.",
+    "genre": "Territory · Hybrid-casual",
+    "orientation": "portrait",
+    "controls": "Drag",
+    "status": "Prototype",
+    "added": "2026-10-08",
+    "updated": "2026-10-08",
+    "version": 1
+  },
+  {
     "slug": "bounce-battle",
     "title": "Fort Bump",
     "pitch": "A hero bounces round your fort, and every building it bumps sends soldiers or shoots faster.",
