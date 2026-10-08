@@ -3,6 +3,18 @@
 // Keep everything after "=" valid JSON: double quotes, no comments, no trailing commas.
 window.ZR_PROTOTYPES = [
   {
+    "slug": "nest-wars",
+    "title": "Nest Wars",
+    "pitch": "Aim your Queen's launches: bouncing critters paint the board and break rival nests.",
+    "genre": "Territory · Hybrid-casual",
+    "orientation": "portrait",
+    "controls": "Drag",
+    "status": "Prototype",
+    "added": "2026-10-08",
+    "updated": "2026-10-08",
+    "version": 1
+  },
+  {
     "slug": "slice-em-all",
     "title": "Slice Em All",
     "pitch": "Swipe a shuriken through a fruit board; runs of one fruit make power-ups that smash crates and rocks.",
