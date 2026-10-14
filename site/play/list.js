@@ -8,11 +8,11 @@ window.ZR_PROTOTYPES = [
     "pitch": "Swipe coin stacks together into tens to feed a hungry piggy bank before the timer runs out.",
     "genre": "Coin sort · Puzzle",
     "orientation": "portrait",
-    "controls": "Tap and swipe",
+    "controls": "Swipe",
     "status": "Prototype",
     "added": "2026-10-14",
     "updated": "2026-10-14",
-    "version": 2
+    "version": 3
   },
   {
     "slug": "nest-wars",
