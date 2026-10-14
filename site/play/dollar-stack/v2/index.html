@@ -43,6 +43,14 @@
   .lvl.next { outline:2px solid var(--accent); }
   .logo { font-size:30px; font-weight:800; letter-spacing:.5px; margin:0; }
   .logo span { color:var(--accent); }
+  #gate { z-index:9; background:radial-gradient(ellipse at 50% 30%, #2a2a40, #0e0e16 75%); }
+  #gate input { width:100%; margin:4px 0 10px; padding:12px; border-radius:10px; border:2px solid #4a4a6a; background:#1b1b2b; color:var(--text);
+    font:inherit; font-size:26px; letter-spacing:12px; text-align:center; -webkit-text-security:disc; user-select:text; -webkit-user-select:text; touch-action:manipulation; outline:none; }
+  #gate input:focus { border-color:var(--accent); }
+  #gate .primary { width:100%; }
+  #gateMsg { min-height:20px; margin:0 0 8px; color:#ff7b7b; font-size:14px; }
+  .shake { animation:shake .4s; }
+  @keyframes shake { 20%,60% { transform:translateX(-10px); } 40%,80% { transform:translateX(10px); } }
 </style>
 </head>
 <body>
@@ -60,6 +68,15 @@
   <p class="logo">Dollar <span>Stack</span></p>
   <p style="margin:4px 0 0">Stack coins, feed the piggy, empty the board.</p>
   <div id="grid"></div>
+</div></div>
+<div class="overlay" id="gate"><div class="card">
+  <p class="logo">Dollar <span>Stack</span></p>
+  <p>This prototype is private. Enter the code to play.</p>
+  <form id="gateForm" autocomplete="off">
+    <input id="gateCode" type="text" inputmode="numeric" maxlength="12" autocomplete="off" aria-label="Code">
+    <div id="gateMsg"></div>
+    <button class="primary" type="submit">Play ▶</button>
+  </form>
 </div></div>
 <div class="overlay" id="end"><div class="card">
   <div id="stars"></div><h1 id="endTitle"></h1><p id="endText"></p>
@@ -833,10 +850,29 @@ window.LAB = {
   summary: () => ({ win: LS.win, end: LS.end, t: Math.round(LS.t * 10) / 10, lead: LS.lead, picks: LS.picks, stats: { you: Object.assign({}, LS.stats, { par: L.par }) } }),
 };
 
+// soft password gate for the shared prototype: the page only holds a hash of the code, and the unlock is remembered on this device
+const GATE_KEY = 'zr-dollar-stack-unlock', GATE_HASH = 1585976546;
+const gateHash = s => { let h = 2166136261; for (const ch of 'zr-ds:' + s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; };
+const begin = () => { startLevel(Math.max(0, LEVELS.findIndex((_, k) => !save.stars[k]))); requestAnimationFrame(frame); };
 layout();
 if (!window.LAB_MODE) {
-  startLevel(Math.max(0, LEVELS.findIndex((_, k) => !save.stars[k])));
-  requestAnimationFrame(frame);
+  let unlocked = false;
+  try { unlocked = localStorage.getItem(GATE_KEY) === String(GATE_HASH); } catch (e) {}
+  if (unlocked) begin();
+  else {
+    const gate = $('gate'), form = $('gateForm'), code = $('gateCode');
+    gate.style.display = 'flex'; setTimeout(() => code.focus(), 60);
+    form.onsubmit = e => {
+      e.preventDefault();
+      if (gateHash(code.value.trim()) === GATE_HASH) {
+        try { localStorage.setItem(GATE_KEY, String(GATE_HASH)); } catch (e) {}
+        code.blur(); gate.style.display = 'none'; begin();
+      } else {
+        $('gateMsg').textContent = 'That code is not right. Try again.'; code.value = ''; sfx('bump'); buzz(60);
+        form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake'); code.focus();
+      }
+    };
+  }
 }
 })();
 </script>
