@@ -3,3 +3,5 @@
 [build]
   publish = "site"
   command = ""
+  # prototypes-gate.js here puts the Prototypes page and play/* behind a code (see that file to change it)
+  edge_functions = "netlify/edge-functions"

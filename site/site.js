@@ -1041,14 +1041,17 @@
     section.hidden = false;
   })();
 
-  // "Play my prototypes": the chip reads Soon until play/list.js lists a game, then shows how many
+  // "Play my prototypes": the chip reads Soon until play/list.js lists a game, then shows how many.
+  // Visitors without the prototypes code get just the number from play/list.js (ZR_PROTOTYPES_COUNT,
+  // see netlify/edge-functions/prototypes-gate.js in the repo).
   (function () {
     var chip = document.getElementById('proto-count');
     var list = window.ZR_PROTOTYPES;
-    if (!chip || !Array.isArray(list) || !list.length) return;
-    chip.textContent = String(list.length);
+    var n = Array.isArray(list) ? list.length : typeof window.ZR_PROTOTYPES_COUNT === 'number' ? window.ZR_PROTOTYPES_COUNT : 0;
+    if (!chip || !n) return;
+    chip.textContent = String(n);
     chip.classList.add('is-count');
     var btn = document.getElementById('proto-btn');
-    if (btn) btn.setAttribute('aria-label', 'Play my prototypes, ' + list.length + (list.length === 1 ? ' game' : ' games'));
+    if (btn) btn.setAttribute('aria-label', 'Play my prototypes, ' + n + (n === 1 ? ' game' : ' games'));
   })();
 })();

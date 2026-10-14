@@ -25,6 +25,14 @@ files in `site/`, and shipping a game touches only `site/play/`.
 Zamilur's Mac, reads his Audible library and listening stats there, and commits only that file
 through GitHub's API. See `tools/listening/README.md`.
 
+## The prototypes code
+
+The Prototypes page and everything in `site/play/` are behind a code, checked on Netlify's servers by
+`netlify/edge-functions/prototypes-gate.js`. Visitors without it get a short page asking for the code;
+the right code sets a cookie for 30 days. `play/list.js` still answers without the code, but only with
+the number of games, for the main page's button. To change the code, set `PROTOTYPES_PASSWORD` in Netlify
+(Site configuration, Environment variables) and redeploy; that also signs everyone out.
+
 ## Good to know
 
 - The weather comes live from Open-Meteo (open-meteo.com, free, no account), fetched by each
